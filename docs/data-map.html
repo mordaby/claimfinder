@@ -1,0 +1,434 @@
+<title>מפת הטבלאות של ClaimFinder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Hebrew:wght@400;600;700&display=swap">
+<style>
+/* Layout: one reading column; the diagram scrolls sideways on its own when the screen is narrow. */
+:root {
+  --bg: #F4F6F6; --fg: #1B2426; --muted: #5A696C; --line: #7F8D90;
+  --box: #FFFFFF; --box-stroke: #C6D0D2; --sub-box: #F3F7FA;
+  --zone-dev: #FBF2E4; --zone-dev-s: #D6B585;
+  --zone-lib: #E7EFF5; --zone-lib-s: #9BB3C6;
+  --zone-ops: #EEEEED; --zone-ops-s: #BDBAB6;
+  --key: #0B7A63; --key-bg: #DCF1EA; --no: #BF3A2B; --no-bg: #FBEAE7;
+  --font-he: "IBM Plex Sans Hebrew", "Arial Hebrew", "Noto Sans Hebrew", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111718; --fg: #E4EBEC; --muted: #98A7A9; --line: #718083;
+  --box: #1A2224; --box-stroke: #35454A; --sub-box: #1E2A31;
+  --zone-dev: #2A2217; --zone-dev-s: #8C6E43; --zone-lib: #15222B; --zone-lib-s: #3E5B71;
+  --zone-ops: #1D1F20; --zone-ops-s: #4B4B4B;
+  --key: #3DCBA6; --key-bg: #123129; --no: #FF7466; --no-bg: #3A1D1A; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111718; --fg: #E4EBEC; --muted: #98A7A9; --line: #718083;
+  --box: #1A2224; --box-stroke: #35454A; --sub-box: #1E2A31;
+  --zone-dev: #2A2217; --zone-dev-s: #8C6E43; --zone-lib: #15222B; --zone-lib-s: #3E5B71;
+  --zone-ops: #1D1F20; --zone-ops-s: #4B4B4B;
+  --key: #3DCBA6; --key-bg: #123129; --no: #FF7466; --no-bg: #3A1D1A; color-scheme: dark; }
+
+body { background: var(--bg); color: var(--fg); font-family: var(--font-he); font-size: 15px; line-height: 1.6; }
+main { max-width: 1280px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { max-width: 68ch; display: grid; gap: 6px; }
+h1 { font-size: 1.75rem; line-height: 1.25; margin: 0; font-weight: 700; text-wrap: balance; }
+h2 { font-size: 1.15rem; margin: 0; font-weight: 600; text-wrap: balance; }
+p { margin: 0; }
+.lead { color: var(--muted); }
+code, .mono { font-family: var(--font-mono); font-size: 0.86em; direction: ltr; unicode-bidi: isolate; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-block: 18px 12px; color: var(--muted); font-size: 0.9rem; }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 30px; height: 0; border-top: 2px solid var(--line); display: inline-block; }
+.sw.key { border-top: 2px dashed var(--key); }
+.sw.no { border-top: 2px dashed var(--no); }
+.sw.zone { width: 16px; height: 12px; border-radius: 3px; border: 1.5px solid; }
+.sw.dev { background: var(--zone-dev); border-color: var(--zone-dev-s); }
+.sw.lib { background: var(--zone-lib); border-color: var(--zone-lib-s); }
+.sw.ops { background: var(--zone-ops); border-color: var(--zone-ops-s); }
+.diagram { overflow-x: auto; border: 1px solid var(--box-stroke); border-radius: 14px; background: var(--box); }
+.diagram svg { display: block; width: 100%; min-width: 1000px; height: auto; direction: ltr; }
+.scroll-hint { display: none; color: var(--muted); font-size: 0.85rem; margin-top: 6px; }
+@media (max-width: 1040px) { .scroll-hint { display: block; } }
+
+/* svg */
+.zone { stroke-width: 1.5; }
+.z-dev { fill: var(--zone-dev); stroke: var(--zone-dev-s); }
+.z-lib { fill: var(--zone-lib); stroke: var(--zone-lib-s); }
+.z-ops { fill: var(--zone-ops); stroke: var(--zone-ops-s); }
+.box rect { fill: var(--box); stroke: var(--box-stroke); stroke-width: 1.2; }
+.box.sub rect { fill: var(--sub-box); stroke-dasharray: 4 3; }
+.box.big > rect { stroke-width: 1.6; }
+.divider { stroke: var(--box-stroke); stroke-width: 1; }
+.t-name { font-family: var(--font-mono); font-weight: 600; font-size: 12.5px; fill: var(--fg); }
+.t-field { font-family: var(--font-mono); font-size: 11.5px; fill: var(--fg); white-space: pre; }
+.t-he { font-family: var(--font-he); }
+.t-cap { font-size: 12px; fill: var(--muted); }
+.t-note { font-size: 11px; fill: var(--key); }
+.t-zone { font-size: 15px; font-weight: 700; fill: var(--fg); }
+.t-zsub { font-size: 12px; fill: var(--muted); }
+.t-boundary { font-size: 11.5px; fill: var(--muted); }
+.t-lbl { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.t-lbl-he { font-size: 11px; fill: var(--muted); direction: rtl; }
+.t-eng { font-size: 13px; font-weight: 600; fill: var(--fg); }
+.engine rect { fill: var(--key-bg); stroke: var(--key); stroke-width: 1.4; }
+.rel { fill: none; stroke: var(--line); stroke-width: 1.4; }
+.rel.embed { stroke-dasharray: 2 3; }
+.dot { fill: var(--line); }
+.ah { fill: var(--line); }
+.key { fill: none; stroke: var(--key); stroke-width: 2; stroke-dasharray: 6 4; }
+.ah-key { fill: var(--key); }
+.pill rect { fill: var(--key-bg); stroke: var(--key); stroke-width: 1; }
+.pill text { font-family: var(--font-mono); font-size: 10.5px; fill: var(--key); font-weight: 600; }
+.boundary { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 2 5; }
+.nolink rect { fill: var(--no-bg); stroke: var(--no); stroke-width: 1.2; stroke-dasharray: 5 4; }
+.t-nolink { font-size: 13px; font-weight: 600; fill: var(--no); }
+.t-nolink-sub { font-size: 12px; fill: var(--muted); }
+.noline { stroke: var(--no); stroke-width: 1.6; stroke-dasharray: 5 4; fill: none; }
+.nox circle { fill: var(--no-bg); stroke: var(--no); stroke-width: 1.4; }
+.nox path { stroke: var(--no); stroke-width: 2; }
+
+/* text sections */
+.sections { display: grid; gap: 28px; margin-top: 28px; }
+.sections > section { display: grid; gap: 10px; min-width: 0; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.93rem; }
+th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--box-stroke); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
+td.k { color: var(--key); font-weight: 600; }
+ul { margin: 0; padding-inline-start: 1.2em; display: grid; gap: 6px; max-width: 75ch; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.two > section { min-width: 0; display: grid; gap: 10px; align-content: start; }
+</style>
+
+<main dir="rtl" lang="he">
+  <header>
+    <h1>מפת הטבלאות</h1>
+    <p class="lead">שלושה אזורים וארבעה מפתחות. מה שבצד שמאל של התרשים נשאר במחשב של הסוכן. הספרייה הציבורית והניהול נמצאים בשרת, ושום טבלה בשרת לא מחזיקה מידע על לקוח.</p>
+  </header>
+
+  <div class="legend" aria-label="מקרא">
+    <span><i class="sw zone dev"></i>מחשב הסוכן</span>
+    <span><i class="sw zone lib"></i>ספרייה ציבורית</span>
+    <span><i class="sw zone ops"></i>ניהול</span>
+    <span><i class="sw"></i>קשר בתוך אזור (החץ מצביע על הטבלה שאליה מפנים)</span>
+    <span><i class="sw key"></i>מפתח ציבורי שמחבר בין המחשב לספרייה</span>
+    <span><i class="sw no"></i>אין קשר</span>
+  </div>
+
+  <figure class="diagram" style="margin:0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1000" role="img" aria-labelledby="erd-title erd-desc">
+<title id="erd-title">מפת הטבלאות</title>
+<desc id="erd-desc">שלושה אזורים: מחשב הסוכן, ספרייה ציבורית בשרת, וניהול בשרת. ארבעה מפתחות ציבוריים מחברים בין המחשב לספרייה: edition_id, slot key, fact key, clause_no.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker><marker id="ah-key" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah-key" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="zone z-dev" x="16" y="16" width="420" height="768" rx="16"/>
+<text class="t-he t-zone" direction="rtl" x="420" y="42">מחשב הסוכן</text>
+<text class="t-he t-zsub" direction="rtl" x="420" y="60">כל מה ששייך ללקוח · נשמר בדפדפן ולא נשלח לשרת</text>
+<rect class="zone z-lib" x="524" y="16" width="700" height="662" rx="16"/>
+<text class="t-he t-zone" direction="rtl" x="1208" y="42">ספרייה ציבורית · שרת</text>
+<text class="t-he t-zsub" direction="rtl" x="1208" y="60">חוקים, סעיפים ומילון · זהה לכל הסוכנים</text>
+<rect class="zone z-ops" x="524" y="700" width="700" height="282" rx="16"/>
+<text class="t-he t-zone" direction="rtl" x="1208" y="726">ניהול · שרת</text>
+<text class="t-he t-zsub" direction="rtl" x="1208" y="744">בלי שום מידע על לקוחות</text>
+<line class="boundary" x1="500" y1="16" x2="500" y2="982"/>
+<text class="t-he t-boundary" direction="rtl" text-anchor="middle" transform="translate(514 430) rotate(-90)">גבול · משמאל רק במחשב של הסוכן</text>
+<g class="box"><rect x="48" y="70" width="368" height="88" rx="8"/>
+<text class="t-name" x="60" y="89">portfolios</text>
+<text class="t-he t-cap" direction="rtl" x="404" y="105">תיק לקוח</text>
+<line class="divider" x1="60" y1="112" x2="404" y2="112"/>
+<text class="t-field" x="60" y="127">id, label</text>
+<text class="t-he t-note" direction="rtl" x="404" y="148">כינוי בלבד · בלי שם, ת״ז או מספר פוליסה</text>
+</g>
+<g class="box"><rect x="48" y="184" width="368" height="168" rx="8"/>
+<text class="t-name" x="60" y="203">holdings[]</text>
+<text class="t-he t-cap" direction="rtl" x="404" y="219">פוליסה של הלקוח (בתוך התיק)</text>
+<line class="divider" x1="60" y1="226" x2="404" y2="226"/>
+<text class="t-field" x="60" y="241">product_id</text>
+<text class="t-field" x="60" y="257">edition_id</text>
+<text class="t-field" x="60" y="273">edition_basis, edition_date_used</text>
+<text class="t-field" x="60" y="289">start_date, last_renewal_date, doc_code</text>
+<text class="t-field" x="60" y="305">covers_bought[]</text>
+<text class="t-field" x="60" y="321">slots{ key: value, source }</text>
+<text class="t-he t-note" direction="rtl" x="404" y="342">הסכומים מהמפרט נשארים כאן</text>
+</g>
+<g class="box"><rect x="48" y="378" width="368" height="136" rx="8"/>
+<text class="t-name" x="60" y="397">sessions</text>
+<text class="t-he t-cap" direction="rtl" x="404" y="413">אירוע</text>
+<line class="divider" x1="60" y1="420" x2="404" y2="420"/>
+<text class="t-field" x="60" y="435">portfolio_id</text>
+<text class="t-field" x="60" y="451">library_version</text>
+<text class="t-field" x="60" y="467">facts{ key: value, quote }</text>
+<text class="t-field" x="60" y="483">declined[], asked{}</text>
+<text class="t-he t-note" direction="rtl" x="404" y="504">מה קרה · הטקסט מנוקה מפרטים מזהים</text>
+</g>
+<g class="box"><rect x="48" y="540" width="368" height="136" rx="8"/>
+<text class="t-name" x="60" y="559">runs[].findings[]</text>
+<text class="t-he t-cap" direction="rtl" x="404" y="575">ממצא (בתוך האירוע)</text>
+<line class="divider" x1="60" y1="582" x2="404" y2="582"/>
+<text class="t-field" x="60" y="597">holding_id, cover_id</text>
+<text class="t-field" x="60" y="613">status, amount{ lo, hi }</text>
+<text class="t-field" x="60" y="629">facts_used[]</text>
+<text class="t-field" x="60" y="645">proof{ event, policy, schedule, calc }</text>
+<text class="t-he t-note" direction="rtl" x="404" y="666">כל ממצא עם שרשרת הוכחה</text>
+</g>
+<g class="engine"><rect x="48" y="702" width="368" height="62" rx="31"/>
+<text class="t-he t-eng" direction="rtl" x="400" y="728">מנוע החישוב · רץ בדפדפן</text>
+<text class="t-field" x="66" y="750">holdings + facts + rules → findings</text></g>
+<path class="rel embed" d="M232,158 L232,184"/>
+<circle class="dot" cx="232" cy="158" r="3"/>
+<text class="t-he t-lbl-he" x="224" y="175" text-anchor="start">בתוך התיק</text>
+<path class="rel" d="M48,446 L32,446 L32,114 L46,114" marker-end="url(#ah)"/>
+<text class="t-lbl" transform="translate(27 330) rotate(-90)" text-anchor="middle">portfolio_id</text>
+<path class="rel embed" d="M232,514 L232,540"/>
+<circle class="dot" cx="232" cy="514" r="3"/>
+<text class="t-he t-lbl-he" x="224" y="531" text-anchor="start">בתוך האירוע</text>
+<path class="rel" d="M232,702 L232,678" marker-end="url(#ah)"/>
+<text class="t-he t-lbl-he" x="224" y="694" text-anchor="start">מייצר</text>
+<g class="box"><rect x="544" y="70" width="200" height="66" rx="8"/>
+<text class="t-name" x="556" y="89">library_releases</text>
+<text class="t-he t-cap" direction="rtl" x="732" y="105">גרסת ספרייה</text>
+<line class="divider" x1="556" y1="112" x2="732" y2="112"/>
+<text class="t-field" x="556" y="127">version, content_sha256</text>
+</g>
+<g class="box"><rect x="1014" y="70" width="190" height="66" rx="8"/>
+<text class="t-name" x="1026" y="89">insurers</text>
+<text class="t-he t-cap" direction="rtl" x="1192" y="105">חברת ביטוח</text>
+<line class="divider" x1="1026" y1="112" x2="1192" y2="112"/>
+<text class="t-field" x="1026" y="127">id, name_he</text>
+</g>
+<g class="box"><rect x="1014" y="170" width="190" height="98" rx="8"/>
+<text class="t-name" x="1026" y="189">products</text>
+<text class="t-he t-cap" direction="rtl" x="1192" y="205">מוצר</text>
+<line class="divider" x1="1026" y1="212" x2="1192" y2="212"/>
+<text class="t-field" x="1026" y="227">id, insurer_id</text>
+<text class="t-field" x="1026" y="243">aliases_he[]</text>
+<text class="t-field" x="1026" y="259">edition_rule</text>
+</g>
+<g class="box big"><rect x="544" y="170" width="420" height="290" rx="10"/>
+<text class="t-name" x="556" y="189">policy_editions</text>
+<text class="t-he t-cap" direction="rtl" x="952" y="205">מהדורת פוליסה</text>
+<line class="divider" x1="556" y1="212" x2="952" y2="212"/>
+<text class="t-field" x="556" y="227">id, product_id, doc_code</text>
+<text class="t-field" x="556" y="243">sold_from, sold_to</text>
+<text class="t-field" x="556" y="259">source{ url, sha256, archived_path }</text>
+<text class="t-field" x="556" y="275">review.status</text>
+<text class="t-he t-note" direction="rtl" x="952" y="275">מוטמע בתוך המהדורה ↓</text>
+</g>
+<g class="box sub"><rect x="560" y="292" width="200" height="156" rx="8"/>
+<text class="t-name" x="572" y="311">covers[]</text>
+<text class="t-he t-cap" direction="rtl" x="748" y="327">כיסויים וחוקים</text>
+<line class="divider" x1="572" y1="334" x2="748" y2="334"/>
+<text class="t-field" x="572" y="349">cover_type</text>
+<text class="t-field" x="572" y="365">clauses[], slots[]</text>
+<text class="t-field" x="572" y="381">rule{ gate, conditions,</text>
+<text class="t-field" x="572" y="397">      named, amount }</text>
+<text class="t-field" x="572" y="413">evidence[]{clause, quote}</text>
+</g>
+<g class="box sub"><rect x="772" y="292" width="180" height="66" rx="8"/>
+<text class="t-name" x="784" y="311">exclusions[] · scope</text>
+<text class="t-he t-cap" direction="rtl" x="940" y="327">חריגים ותנאי סף</text>
+<line class="divider" x1="784" y1="334" x2="940" y2="334"/>
+<text class="t-field" x="784" y="349">fact | expr, clauses</text>
+</g>
+<g class="box sub"><rect x="772" y="366" width="180" height="82" rx="8"/>
+<text class="t-name" x="784" y="385">tables · plans[]</text>
+<text class="t-he t-cap" direction="rtl" x="940" y="401">טבלאות ומסלולים</text>
+<line class="divider" x1="784" y1="408" x2="940" y2="408"/>
+<text class="t-field" x="784" y="423">rows, row_quotes</text>
+<text class="t-field" x="784" y="439">site_map, slots</text>
+</g>
+<g class="box"><rect x="544" y="500" width="124" height="98" rx="8"/>
+<text class="t-name" x="556" y="519">cover_types</text>
+<text class="t-he t-cap" direction="rtl" x="656" y="535">סוג כיסוי</text>
+<line class="divider" x1="556" y1="542" x2="656" y2="542"/>
+<text class="t-field" x="556" y="557">id</text>
+<text class="t-field" x="556" y="573">rank_weight</text>
+</g>
+<g class="box"><rect x="680" y="500" width="150" height="98" rx="8"/>
+<text class="t-name" x="692" y="519">slot_defs</text>
+<text class="t-he t-cap" direction="rtl" x="818" y="535">הגדרת סכום פרטי</text>
+<line class="divider" x1="692" y1="542" x2="818" y2="542"/>
+<text class="t-field" x="692" y="557">key, unit</text>
+<text class="t-field" x="692" y="573">source_hint_he</text>
+</g>
+<g class="box"><rect x="842" y="500" width="150" height="98" rx="8"/>
+<text class="t-name" x="854" y="519">vocab_keys</text>
+<text class="t-he t-cap" direction="rtl" x="980" y="535">מילון עובדות</text>
+<line class="divider" x1="854" y1="542" x2="980" y2="542"/>
+<text class="t-field" x="854" y="557">key, type</text>
+<text class="t-field" x="854" y="573">values[]</text>
+<text class="t-field" x="854" y="589">+ vocab_sets</text>
+</g>
+<g class="box"><rect x="1004" y="500" width="200" height="98" rx="8"/>
+<text class="t-name" x="1016" y="519">clauses</text>
+<text class="t-he t-cap" direction="rtl" x="1192" y="535">סעיף</text>
+<line class="divider" x1="1016" y1="542" x2="1192" y2="542"/>
+<text class="t-field" x="1016" y="557">edition_id, clause_no</text>
+<text class="t-field" x="1016" y="573">text, page_from</text>
+<text class="t-field" x="1016" y="589">bboxes, verified</text>
+</g>
+<path class="rel" d="M1109,170 L1109,136" marker-end="url(#ah)"/>
+<text class="t-lbl" x="1115" y="157" text-anchor="start">insurer_id</text>
+<path class="rel" d="M964,228 L1014,228" marker-end="url(#ah)"/>
+<g class="pill"><rect x="954.0" y="219" width="70" height="18" rx="9"/><text x="989" y="232" text-anchor="middle">product_id</text></g>
+<path class="rel" d="M649,170 L649,136" marker-end="url(#ah)"/>
+<text class="t-lbl" x="655" y="157" text-anchor="start">library_version</text>
+<path class="rel" d="M606,448 L606,500" marker-end="url(#ah)"/>
+<text class="t-lbl" x="612" y="488" text-anchor="start">cover_type</text>
+<path class="rel" d="M745,448 L745,500" marker-end="url(#ah)"/>
+<text class="t-lbl" x="751" y="488" text-anchor="start">{slot}</text>
+<path class="rel" d="M917,460 L917,500" marker-end="url(#ah)"/>
+<text class="t-lbl" x="923" y="488" text-anchor="start">{var}</text>
+<path class="rel" d="M964,430 L1104,430 L1104,500" marker-end="url(#ah)"/>
+<text class="t-lbl" x="1110" y="488" text-anchor="start">clause_no</text>
+<path class="key" d="M416,230 L544,230" marker-end="url(#ah-key)"/>
+<g class="pill"><rect x="432.0" y="221" width="76" height="18" rx="9"/><text x="470" y="234" text-anchor="middle">edition_id</text></g>
+<path class="key" d="M416,336 L468,336 L468,622 L755,622 L755,598" marker-end="url(#ah-key)"/>
+<g class="pill"><rect x="555.0" y="613" width="70" height="18" rx="9"/><text x="590" y="626" text-anchor="middle">slot key</text></g>
+<path class="key" d="M416,470 L452,470 L452,636 L917,636 L917,598" marker-end="url(#ah-key)"/>
+<g class="pill"><rect x="805.0" y="627" width="70" height="18" rx="9"/><text x="840" y="640" text-anchor="middle">fact key</text></g>
+<path class="key" d="M416,650 L1104,650 L1104,598" marker-end="url(#ah-key)"/>
+<g class="pill"><rect x="942.0" y="641" width="116" height="18" rx="9"/><text x="1000" y="654" text-anchor="middle">clause_no + page</text></g>
+<g class="box ops"><rect x="544" y="766" width="150" height="66" rx="8"/>
+<text class="t-name" x="556" y="785">agencies</text>
+<text class="t-he t-cap" direction="rtl" x="682" y="801">סוכנות</text>
+<line class="divider" x1="556" y1="808" x2="682" y2="808"/>
+<text class="t-field" x="556" y="823">id, name</text>
+</g>
+<g class="box ops"><rect x="716" y="766" width="170" height="82" rx="8"/>
+<text class="t-name" x="728" y="785">agents</text>
+<text class="t-he t-cap" direction="rtl" x="874" y="801">סוכן (משתמש)</text>
+<line class="divider" x1="728" y1="808" x2="874" y2="808"/>
+<text class="t-field" x="728" y="823">id, agency_id</text>
+<text class="t-field" x="728" y="839">display_name, role</text>
+</g>
+<g class="box ops"><rect x="908" y="766" width="150" height="82" rx="8"/>
+<text class="t-name" x="920" y="785">invites</text>
+<text class="t-he t-cap" direction="rtl" x="1046" y="801">קוד הזמנה</text>
+<line class="divider" x1="920" y1="808" x2="1046" y2="808"/>
+<text class="t-field" x="920" y="823">code_hash</text>
+<text class="t-field" x="920" y="839">agency_id, uses</text>
+</g>
+<g class="box ops"><rect x="544" y="880" width="116" height="82" rx="8"/>
+<text class="t-name" x="556" y="899">usage</text>
+<text class="t-he t-cap" direction="rtl" x="648" y="915">שימוש במודל</text>
+<line class="divider" x1="556" y1="922" x2="648" y2="922"/>
+<text class="t-field" x="556" y="937">agent_id</text>
+<text class="t-field" x="556" y="953">model, tokens</text>
+</g>
+<g class="box ops"><rect x="672" y="880" width="124" height="82" rx="8"/>
+<text class="t-name" x="684" y="899">telemetry</text>
+<text class="t-he t-cap" direction="rtl" x="784" y="915">ספירות בלבד</text>
+<line class="divider" x1="684" y1="922" x2="784" y2="922"/>
+<text class="t-field" x="684" y="937">agent_id</text>
+<text class="t-field" x="684" y="953">counts</text>
+</g>
+<g class="box ops"><rect x="808" y="880" width="116" height="82" rx="8"/>
+<text class="t-name" x="820" y="899">feedback</text>
+<text class="t-he t-cap" direction="rtl" x="912" y="915">משוב (ביוזמה)</text>
+<line class="divider" x1="820" y1="922" x2="912" y2="922"/>
+<text class="t-field" x="820" y="937">agent_id</text>
+<text class="t-field" x="820" y="953">opt-in</text>
+</g>
+<g class="box ops"><rect x="936" y="880" width="140" height="82" rx="8"/>
+<text class="t-name" x="948" y="899">policy_requests</text>
+<text class="t-he t-cap" direction="rtl" x="1064" y="915">בקשת פוליסה</text>
+<line class="divider" x1="948" y1="922" x2="1064" y2="922"/>
+<text class="t-field" x="948" y="937">product_text</text>
+<text class="t-field" x="948" y="953">→ edition_id</text>
+</g>
+<g class="box ops"><rect x="1088" y="880" width="116" height="82" rx="8"/>
+<text class="t-name" x="1100" y="899">ingest_jobs</text>
+<text class="t-he t-cap" direction="rtl" x="1192" y="915">קליטת פוליסה</text>
+<line class="divider" x1="1100" y1="922" x2="1192" y2="922"/>
+<text class="t-field" x="1100" y="937">edition_id</text>
+<text class="t-field" x="1100" y="953">mode</text>
+</g>
+<path class="rel" d="M716,799 L694,799" marker-end="url(#ah)"/>
+<path class="rel" d="M602,880 L602,864"/>
+<path class="rel" d="M734,880 L734,864"/>
+<path class="rel" d="M866,880 L866,864"/>
+<path class="rel" d="M1006,880 L1006,864"/>
+<path class="rel" d="M1146,880 L1146,864"/>
+<path class="rel" d="M602,864 L1146,864"/>
+<path class="rel" d="M801,864 L801,848" marker-end="url(#ah)"/>
+<text class="t-lbl" x="612" y="877" text-anchor="start">agent_id</text>
+<g class="nolink"><rect x="48" y="806" width="368" height="70" rx="10"/>
+<text class="t-he t-nolink" direction="rtl" x="400" y="833">אין קשר בין הסוכן בשרת לבין התיקים שלו</text>
+<text class="t-he t-nolink-sub" direction="rtl" x="400" y="855">השרת לא יודע אילו לקוחות יש לסוכן</text></g>
+<path class="noline" d="M416,841 L716,841"/>
+<g class="nox" transform="translate(470 841)"><circle r="10"/><path d="M-4,-4 L4,4 M4,-4 L-4,4"/></g>
+</svg>
+  </figure>
+  <p class="scroll-hint">אפשר לגלול את התרשים הצידה.</p>
+
+  <div class="sections">
+    <section>
+      <h2>ארבעת המפתחות שמחברים בין המחשב לספרייה</h2>
+      <p>אלה מזהים ציבוריים בלבד. הערכים עצמם, כמו 20,000 ₪ או 4 ימי אשפוז, לא עוזבים את המחשב.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>מפתח</th><th>במחשב של הסוכן</th><th>בספרייה</th><th>דוגמה</th></tr></thead>
+          <tbody>
+            <tr><td class="k"><span class="mono">edition_id</span></td><td><span class="mono">holdings[]</span>: על איזו מהדורה הפוליסה של הלקוח</td><td><span class="mono">policy_editions</span></td><td><span class="mono">aig_active_0613</span></td></tr>
+            <tr><td class="k"><span class="mono">slot key</span></td><td><span class="mono">holdings[].slots</span>: הסכום מהמפרט</td><td><span class="mono">slot_defs</span>, ובחוק: <span class="mono">{"slot": …}</span></td><td><span class="mono">sum.fractures = 20,000</span></td></tr>
+            <tr><td class="k"><span class="mono">fact key</span></td><td><span class="mono">sessions.facts</span>: מה קרה באירוע</td><td><span class="mono">vocab_keys</span>, ובחוק: <span class="mono">{"var": …}</span></td><td><span class="mono">hospital_days = 4</span></td></tr>
+            <tr><td class="k"><span class="mono">clause_no + page</span></td><td><span class="mono">findings[].proof</span>: על מה הממצא נשען</td><td><span class="mono">clauses</span>, עם עמוד ומיקום ב-PDF</td><td>סעיף א.21</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="two">
+      <section>
+        <h2>בתוך הספרייה</h2>
+        <ul>
+          <li>חברה ← מוצר ← מהדורה. מוצר אחד, הרבה מהדורות. המוצר קובע איך בוחרים מהדורה: לפי תאריך הצטרפות, חידוש אחרון או תאריך האירוע.</li>
+          <li>בתוך כל מהדורה יושבים הכיסויים, החריגים, הטבלאות והמסלולים. החוקים שבהם מפנים לשלוש טבלאות הגדרה: מילון העובדות, הגדרות הסכומים הפרטיים וסוגי הכיסוי.</li>
+          <li>כל כיסוי מצטט סעיפים, ולכל ציטוט יש עמוד בקובץ המקורי. ציטוט שלא מופיע מילה במילה בסעיף נפסל בבדיקה.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>מה מוטמע ומה נפרד</h2>
+        <ul>
+          <li><b>מוטמע:</b> כיסויים, חריגים וטבלאות בתוך המהדורה; פוליסות הלקוח בתוך התיק; ממצאים בתוך האירוע. הם תמיד נקראים יחד.</li>
+          <li><b>נפרד:</b> הסעיפים, כי הם גדולים ומחפשים בהם לבד. המילון והגדרות הסכומים, כי כל המהדורות משתמשות בהם.</li>
+          <li><b>בצד הניהול</b> יש רק סוכנים, הזמנות, ספירות שימוש, משוב שנשלח במכוון, ובקשות להוסיף פוליסות.</li>
+        </ul>
+      </section>
+    </div>
+
+    <section>
+      <h2>מה זה ה"טבלאות" שבתוך מהדורה</h2>
+      <p>חלק מהפוליסה כתוב כטבלה ולא כמשפט. הדוגמה המרכזית בתאונות אישיות היא לוח הפיצויים לשברים: הוא קובע כמה אחוזים מסכום ביטוח השברים משולמים על כל סוג עצם. אנחנו שומרים אותו בתוך המהדורה כשלושה חלקים:</p>
+      <ul>
+        <li><b>שורות הטבלה (<span class="mono">rows</span>):</b> קטגוריה ואחוז. ב-AIG ACTIVE 06/13, למשל: גוף חוליה ואגן 100%; רגל, יד, כתף, צלעות, גולגולת וקשת חוליה 35%; שורש כף היד, קרסול ועצם הזנב 10%; אצבעות ואף 3%. התקרה היא 100%.</li>
+        <li><b>מיפוי עצמות (<span class="mono">site_map</span>):</b> איך עצם ספציפית נכנסת לקטגוריה לפי הנוסח של אותה פוליסה. ב-AIG צוואר הירך הוא רגל, כי סעיף א.21 אומר זאת במפורש. בכלל הנוסח לא מכריע בין רגל לאגן, ולכן התוצאה היא טווח בין 35% ל-100%.</li>
+        <li><b>ציטוט לכל שורה (<span class="mono">row_quotes</span>):</b> לכל אחוז יש ציטוט מהטבלה בקובץ המקורי, עם מספר העמוד. זו ההוכחה שהמספר לא הומצא.</li>
+      </ul>
+      <p>כך זה מתחבר בחישוב: "שבר בצוואר הירך" ← רגל ← 35% ← כפול סכום ביטוח השברים מהמפרט (20,000 ₪) ← 7,000 ₪.</p>
+      <p><b>מסלולים (<span class="mono">plans</span>)</b> הם הטבלה השנייה: מוצר שנמכר במסלולים עם סכומים קבועים, כמו מסלול 100,000 ₪ או ביטוח התלמידים. בחירת המסלול ממלאת את הסכומים מנתונים ציבוריים. בהמשך יתווספו טבלאות נוספות באותו מבנה, למשל טבלת כוויות לפי אחוז שטח גוף ודרגה.</p>
+      <p class="lead">ובמובן של מסד הנתונים: כל קופסה בתרשים היא טבלה, או "collection" במונגו. הקופסאות המקווקוות בתוך המהדורה הן חלקים שמוטמעים בתוכה ולא טבלאות נפרדות.</p>
+    </section>
+
+    <section>
+      <h2>מוכן לשינוי: אם נקבל אישור לשמור יותר</h2>
+      <p>כל שדה במערכת מסווג בקובץ אחד: ציבורי, חשבון סוכן, ספירות, נתוני תיק לא מזהים, נתוני אירוע או פרטים מזהים. הקוד לא מחליט לבד מה נשמר איפה. הוא שואל את הסיווג ואת פרופיל הפרטיות הפעיל. ככה מעבר בין פרופילים הוא שינוי הגדרה ומתאם אחסון אחד, בלי לשכתב את המערכת.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>פרופיל</th><th>איפה נתוני הלקוח</th><th>פרטים מזהים (שם, ת״ז)</th><th>מה צריך כדי להפעיל</th></tr></thead>
+          <tbody>
+            <tr><td class="k">הכול במחשב של הסוכן <span class="lead">(פעיל)</span></td><td>רק בדפדפן של הסוכן</td><td>לא נאספים. השדות קיימים אבל חסומים.</td><td>—</td></tr>
+            <tr><td class="k">גיבוי מוצפן <span class="lead">(שמור לעתיד)</span></td><td>במחשב, ועותק מוצפן בשרת שאנחנו לא יכולים לקרוא</td><td>אפשרי לפי בחירת הסוכנות, רק בתוך ההצפנה</td><td>מתאם אחסון מוצפן ונוהל שחזור מפתח</td></tr>
+            <tr><td class="k">שמירה מלאה בשרת <span class="lead">(שמור לעתיד)</span></td><td>בשרת שלנו, בהפרדה לכל סוכנות</td><td>רק השדות שהסוכנות אישרה</td><td>אישור מתועד, הסכמה, יומן גישה, הצפנה ומדיניות מחיקה לכל סוג מידע</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>בכל פרופיל: פרטים מזהים לא נשלחים למודל, לא נכנסים לספירות ולא ללוגים, וטקסט חופשי עובר ניקוי לפני שהוא יוצא מהמחשב.</li>
+        <li>כבר עכשיו יש לכל רשומה גרסה וסימון באיזה פרופיל היא נשמרה, כך שאפשר להעביר תיקים בין אחסונים באישור הסוכן.</li>
+        <li>המנוע לא יודע מאיפה הגיעו הנתונים. יש בדיקה שמריצה את אותו תרחיש מול אחסון אחר ומוודאת שהתוצאה זהה.</li>
+      </ul>
+    </section>
+  </div>
+</main>

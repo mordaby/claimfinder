@@ -1,0 +1,159 @@
+{
+  "_doc": "Insurers and product lines. A product line has many editions (policy files). edition_rule decides which edition a holding uses (DESIGN.md §3.7): start_date (legacy, sold before the 1.5.2021 PA reform), last_renewal (post-reform, 2-year term), event_date (group/status policies with a fixed period, e.g. per school year). aliases_he: names as printed on schedules / Har HaBituach, used for product matching (DESIGN §3.7 step A).",
+  "insurers": [
+    {
+      "id": "aig",
+      "name_he": "AIG ישראל",
+      "site": "https://www.aig.co.il"
+    },
+    {
+      "id": "clal",
+      "name_he": "כלל ביטוח",
+      "site": "https://www.clalbit.co.il"
+    },
+    {
+      "id": "harel",
+      "name_he": "הראל",
+      "site": "https://www.harel-group.co.il"
+    },
+    {
+      "id": "phoenix",
+      "name_he": "הפניקס",
+      "site": "https://www.fnx.co.il"
+    },
+    {
+      "id": "migdal",
+      "name_he": "מגדל",
+      "site": "https://www.migdal.co.il"
+    },
+    {
+      "id": "menora",
+      "name_he": "מנורה מבטחים",
+      "site": "https://www.menoramivt.co.il"
+    },
+    {
+      "id": "ayalon",
+      "name_he": "איילון",
+      "site": "https://www.ayalon-ins.co.il"
+    }
+  ],
+  "products": [
+    {
+      "id": "aig_active",
+      "insurer_id": "aig",
+      "family": "personal_accident",
+      "name_he": "AIG ACTIVE",
+      "edition_rule": "start_date",
+      "era": "legacy",
+      "aliases_he": [
+        "AIG ACTIVE",
+        "אקטיב",
+        "AIG אקטיב",
+        "ACTIVE ביטוח תאונות אישיות"
+      ],
+      "renewal_updates_edition": false,
+      "renewal_note": "assumption: auto-renewal keeps the joining edition — verify per product (DESIGN §3.7, §17)"
+    },
+    {
+      "id": "aig_top",
+      "insurer_id": "aig",
+      "family": "personal_accident",
+      "name_he": "AIG TOP",
+      "edition_rule": "start_date",
+      "era": "legacy",
+      "aliases_he": [
+        "AIG TOP",
+        "TOP תאונות אישיות",
+        "טופ"
+      ],
+      "renewal_updates_edition": false,
+      "renewal_note": "assumption: auto-renewal keeps the joining edition — verify per product (DESIGN §3.7, §17)"
+    },
+    {
+      "id": "clal_haganat_atzmit",
+      "insurer_id": "clal",
+      "family": "personal_accident",
+      "name_he": "מדיכלל הגנה עצמית",
+      "edition_rule": "start_date",
+      "era": "legacy",
+      "aliases_he": [
+        "מדיכלל הגנה עצמית",
+        "הגנה עצמית",
+        "כלל הגנה עצמית"
+      ],
+      "renewal_updates_edition": false,
+      "renewal_note": "assumption: auto-renewal keeps the joining edition — verify per product (DESIGN §3.7, §17)"
+    },
+    {
+      "id": "harel_pa",
+      "insurer_id": "harel",
+      "family": "personal_accident",
+      "name_he": "הראל ביטוח תאונות אישיות (מהדורה 2022, מסלולים)",
+      "edition_rule": "last_renewal",
+      "era": "post_reform",
+      "aliases_he": [
+        "הראל תאונות אישיות",
+        "ביטוח תאונות אישיות הראל"
+      ],
+      "renewal_updates_edition": false
+    },
+    {
+      "id": "migdal_doagim",
+      "insurer_id": "migdal",
+      "family": "personal_accident",
+      "name_he": "מגדל דואגים למשפחה",
+      "edition_rule": "start_date",
+      "era": "legacy",
+      "aliases_he": [
+        "דואגים למשפחה",
+        "דואגים למשפחה מורחב"
+      ],
+      "renewal_updates_edition": false,
+      "renewal_note": "assumption: auto-renewal keeps the joining edition — verify per product (DESIGN §3.7, §17)"
+    },
+    {
+      "id": "menora_top",
+      "insurer_id": "menora",
+      "family": "personal_accident",
+      "name_he": "מנורה תאונות TOP",
+      "edition_rule": "start_date",
+      "era": "legacy",
+      "aliases_he": [
+        "תאונות TOP",
+        "מנורה TOP"
+      ],
+      "renewal_updates_edition": false,
+      "renewal_note": "assumption: auto-renewal keeps the joining edition — verify per product (DESIGN §3.7, §17)"
+    },
+    {
+      "id": "phoenix_pa",
+      "insurer_id": "phoenix",
+      "family": "personal_accident",
+      "name_he": "הפניקס ביטוח תאונות אישיות",
+      "edition_rule": "start_date",
+      "era": "legacy",
+      "aliases_he": [
+        "הפניקס תאונות אישיות",
+        "פוליסה לביטוח תאונות אישיות"
+      ],
+      "renewal_updates_edition": false,
+      "renewal_note": "assumption: auto-renewal keeps the joining edition — verify per product (DESIGN §3.7, §17)"
+    },
+    {
+      "id": "moe_students",
+      "insurer_id": null,
+      "family": "personal_accident",
+      "name_he": "ביטוח תאונות אישיות לתלמידים",
+      "edition_rule": "event_date",
+      "era": "status",
+      "sponsor_he": "משרד החינוך",
+      "note": "Insurer varies by school year (Ayalon for 2025-26); set insurer_id on each edition.",
+      "aliases_he": [
+        "ביטוח תלמידים",
+        "ביטוח תאונות אישיות לתלמידים",
+        "משרד החינוך"
+      ],
+      "renewal_updates_edition": false
+    }
+  ]
+}

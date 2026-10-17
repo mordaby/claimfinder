@@ -1,0 +1,508 @@
+{
+ "_doc": "Event-fact vocabulary (public, shared). The LLM may only fill these keys. Values come from the agent's text or answers, never from documents. Private amounts live in slots.json, not here.",
+ "version": 1,
+ "keys": [
+  {
+   "key": "event_cause",
+   "type": "enum",
+   "label_he": "סוג האירוע",
+   "values": [
+    {
+     "v": "accident",
+     "he": "תאונה",
+     "syn": [
+      "נפל",
+      "נפילה",
+      "תאונה",
+      "החליק",
+      "נפגע"
+     ]
+    },
+    {
+     "v": "illness",
+     "he": "מחלה",
+     "syn": [
+      "מחלה",
+      "אובחן",
+      "חלה"
+     ]
+    }
+   ],
+   "ask_he": "האם מדובר בתאונה או במחלה?"
+  },
+  {
+   "key": "event_date",
+   "type": "date",
+   "label_he": "תאריך האירוע",
+   "ask_he": "מתי קרה האירוע?"
+  },
+  {
+   "key": "event_context",
+   "type": "enum",
+   "label_he": "הקשר האירוע",
+   "values": [
+    {
+     "v": "home",
+     "he": "בבית"
+    },
+    {
+     "v": "road",
+     "he": "תאונת דרכים / בדרך"
+    },
+    {
+     "v": "work",
+     "he": "בעבודה"
+    },
+    {
+     "v": "sport",
+     "he": "בזמן ספורט"
+    },
+    {
+     "v": "other",
+     "he": "אחר"
+    }
+   ],
+   "ask_he": "איפה זה קרה – בבית, בדרך, בעבודה או בזמן ספורט?"
+  },
+  {
+   "key": "death",
+   "type": "bool",
+   "label_he": "האם המבוטח נפטר",
+   "ask_he": "האם המבוטח נפטר כתוצאה מהאירוע?"
+  },
+  {
+   "key": "death_days_after",
+   "type": "number",
+   "unit": "days",
+   "label_he": "ימים מהאירוע עד הפטירה"
+  },
+  {
+   "key": "fracture_sites",
+   "type": "enum_list",
+   "label_he": "מקום השבר",
+   "values": [
+    {
+     "v": "femoral_neck",
+     "he": "צוואר הירך",
+     "syn": [
+      "צוואר הירך",
+      "שבר בירך",
+      "שבר ירך"
+     ]
+    },
+    {
+     "v": "femoral_head",
+     "he": "ראש הירך"
+    },
+    {
+     "v": "femur",
+     "he": "עצם הירך (גוף)"
+    },
+    {
+     "v": "tibia",
+     "he": "שוקה"
+    },
+    {
+     "v": "fibula",
+     "he": "שוקית"
+    },
+    {
+     "v": "humerus",
+     "he": "עצם הזרוע"
+    },
+    {
+     "v": "radius",
+     "he": "עצם החישור"
+    },
+    {
+     "v": "ulna",
+     "he": "עצם הגומד"
+    },
+    {
+     "v": "clavicle",
+     "he": "עצם הבריח"
+    },
+    {
+     "v": "scapula",
+     "he": "עצם השכמה"
+    },
+    {
+     "v": "rib",
+     "he": "צלע",
+     "syn": [
+      "צלעות"
+     ]
+    },
+    {
+     "v": "sternum",
+     "he": "עצם החזה"
+    },
+    {
+     "v": "vertebra_body",
+     "he": "גוף חוליה"
+    },
+    {
+     "v": "vertebra_arch",
+     "he": "קשת חוליה"
+    },
+    {
+     "v": "vertebra_unspecified",
+     "he": "חוליה (לא פורט)",
+     "syn": [
+      "חוליה",
+      "שבר בגב",
+      "חוליות"
+     ],
+     "refine_to": [
+      "vertebra_body",
+      "vertebra_arch"
+     ],
+     "refine_he": "השבר היה בגוף החוליה או בקשת/זיז החוליה? (כתוב בסיכום השחרור או בפענוח ה-CT)"
+    },
+    {
+     "v": "coccyx",
+     "he": "עצם הזנב"
+    },
+    {
+     "v": "pelvis",
+     "he": "אגן"
+    },
+    {
+     "v": "wrist",
+     "he": "שורש כף היד"
+    },
+    {
+     "v": "ankle",
+     "he": "קרסול"
+    },
+    {
+     "v": "hand",
+     "he": "כף יד"
+    },
+    {
+     "v": "finger",
+     "he": "אצבע (יד)"
+    },
+    {
+     "v": "foot",
+     "he": "כף רגל"
+    },
+    {
+     "v": "toe",
+     "he": "אצבע (רגל)"
+    },
+    {
+     "v": "nose",
+     "he": "אף"
+    },
+    {
+     "v": "skull",
+     "he": "גולגולת"
+    },
+    {
+     "v": "face",
+     "he": "עצמות הפנים"
+    },
+    {
+     "v": "leg_unspecified",
+     "he": "רגל (לא פורט)",
+     "syn": [
+      "שבר ברגל"
+     ]
+    },
+    {
+     "v": "arm_unspecified",
+     "he": "יד/זרוע (לא פורט)",
+     "syn": [
+      "שבר ביד"
+     ]
+    }
+   ],
+   "ask_he": "איזו עצם נשברה בדיוק?"
+  },
+  {
+   "key": "fracture_proof",
+   "type": "enum",
+   "label_he": "הוכחת השבר",
+   "values": [
+    {
+     "v": "xray",
+     "he": "צילום רנטגן"
+    },
+    {
+     "v": "ct",
+     "he": "CT"
+    },
+    {
+     "v": "mri",
+     "he": "MRI"
+    },
+    {
+     "v": "other",
+     "he": "אחר"
+    }
+   ],
+   "ask_he": "האם השבר אובחן בצילום רנטגן, CT או MRI?"
+  },
+  {
+   "key": "fracture_degenerative",
+   "type": "bool",
+   "label_he": "שבר מתהליך הדרגתי / ספונטני",
+   "ask_he": "האם השבר נגרם מאוסטאופורוזיס או מתהליך הדרגתי (ולא מהתאונה עצמה)?"
+  },
+  {
+   "key": "prior_fracture_same_site_paid",
+   "type": "bool",
+   "label_he": "שולם בעבר על שבר באותו מקום",
+   "ask_he": "האם בעבר כבר שולם פיצוי על שבר באותו מקום?"
+  },
+  {
+   "key": "hospital_days",
+   "type": "number",
+   "unit": "days",
+   "label_he": "ימי אשפוז",
+   "ask_he": "כמה ימים היה באשפוז?"
+  },
+  {
+   "key": "hospital_consecutive_nights",
+   "type": "number",
+   "unit": "nights",
+   "label_he": "לילות אשפוז רצופים",
+   "ask_he": "כמה לילות רצופים היה מאושפז?"
+  },
+  {
+   "key": "er_only",
+   "type": "bool",
+   "label_he": "רק חדר מיון",
+   "ask_he": "האם היה רק בחדר מיון, בלי אשפוז?"
+  },
+  {
+   "key": "weeks_off_work",
+   "type": "number",
+   "unit": "weeks",
+   "label_he": "שבועות היעדרות מעבודה",
+   "ask_he": "כמה שבועות לא עבד (או היה מרותק לבית) בעקבות האירוע?"
+  },
+  {
+   "key": "employment",
+   "type": "enum",
+   "label_he": "מעמד תעסוקתי",
+   "values": [
+    {
+     "v": "employee",
+     "he": "שכיר"
+    },
+    {
+     "v": "self_employed",
+     "he": "עצמאי"
+    },
+    {
+     "v": "not_working",
+     "he": "לא עובד"
+    }
+   ],
+   "ask_he": "המבוטח שכיר, עצמאי או לא עובד?"
+  },
+  {
+   "key": "adl_lost_count",
+   "type": "number",
+   "label_he": "מספר פעולות יומיומיות שאינו מסוגל לבצע (0-6)",
+   "ask_he": "בכמה מתוך 6 הפעולות היומיומיות (קימה ושכיבה, התלבשות, רחצה, אכילה, שליטה בסוגרים, ניידות) הוא צריך עזרה?"
+  },
+  {
+   "key": "permanent_disability",
+   "type": "enum",
+   "label_he": "נכות צמיתה",
+   "values": [
+    {
+     "v": "determined",
+     "he": "נקבעה"
+    },
+    {
+     "v": "pending",
+     "he": "בבירור"
+    },
+    {
+     "v": "none",
+     "he": "אין"
+    }
+   ],
+   "ask_he": "האם נקבעה או צפויה להיקבע נכות צמיתה?"
+  },
+  {
+   "key": "disability_pct",
+   "type": "number",
+   "unit": "pct",
+   "label_he": "אחוז נכות צמיתה שנקבע",
+   "ask_he": "מה אחוז הנכות שנקבע?"
+  },
+  {
+   "key": "burns",
+   "type": "bool",
+   "label_he": "כוויות",
+   "ask_he": "האם היו כוויות?"
+  },
+  {
+   "key": "pre_existing_related",
+   "type": "bool",
+   "label_he": "קשור למצב רפואי קודם",
+   "ask_he": "האם הפגיעה קשורה למצב רפואי שאובחן לפני ההצטרפות לביטוח?"
+  },
+  {
+   "key": "motor_two_wheeler",
+   "type": "bool",
+   "label_he": "דו-גלגלי ממונע / טרקטורון",
+   "ask_he": "האם היה מעורב אופנוע, קטנוע או טרקטורון (כנהג או כנוסע)?"
+  },
+  {
+   "key": "e_bike",
+   "type": "bool",
+   "label_he": "אופניים/קורקינט חשמלי",
+   "ask_he": "האם היו מעורבים אופניים או קורקינט חשמלי?"
+  },
+  {
+   "key": "alcohol_or_drugs",
+   "type": "bool",
+   "label_he": "אלכוהול או סמים"
+  },
+  {
+   "key": "pro_sport",
+   "type": "bool",
+   "label_he": "ספורט מקצועני/תחרותי"
+  },
+  {
+   "key": "extreme_sport",
+   "type": "bool",
+   "label_he": "ספורט אתגרי"
+  },
+  {
+   "key": "horse_or_winter_sport",
+   "type": "bool",
+   "label_he": "רכיבה על סוסים / ספורט חורף"
+  },
+  {
+   "key": "security_forces_activity",
+   "type": "bool",
+   "label_he": "פעילות בכוחות הביטחון"
+  },
+  {
+   "key": "illegal_activity",
+   "type": "bool",
+   "label_he": "פעילות בלתי חוקית"
+  },
+  {
+   "key": "non_scheduled_flight",
+   "type": "bool",
+   "label_he": "טיסה לא סדירה / כצוות"
+  },
+  {
+   "key": "self_harm",
+   "type": "bool",
+   "label_he": "פגיעה עצמית"
+  }
+ ],
+ "sets": {
+  "_doc": "Named value sets usable in expressions as {\"set\": \"<name>\"}. Used for severity triggers (ask_when) so minor events don't trigger questions about nursing/disability.",
+  "major_fracture_sites": [
+   "femoral_neck",
+   "femoral_head",
+   "femur",
+   "pelvis",
+   "vertebra_body",
+   "vertebra_arch",
+   "vertebra_unspecified",
+   "tibia",
+   "humerus",
+   "skull",
+   "leg_unspecified"
+  ]
+ },
+ "site_map_default": {
+  "_doc": "Canonical body site -> generic fracture-table category. Policies override in their own site_map (e.g. Clal femoral_neck is ambiguous).",
+  "femoral_neck": [
+   "leg"
+  ],
+  "femoral_head": [
+   "leg"
+  ],
+  "femur": [
+   "leg"
+  ],
+  "tibia": [
+   "leg"
+  ],
+  "fibula": [
+   "leg"
+  ],
+  "humerus": [
+   "arm"
+  ],
+  "radius": [
+   "arm"
+  ],
+  "ulna": [
+   "arm"
+  ],
+  "clavicle": [
+   "shoulder"
+  ],
+  "scapula": [
+   "shoulder"
+  ],
+  "rib": [
+   "chest"
+  ],
+  "sternum": [
+   "chest"
+  ],
+  "vertebra_body": [
+   "vertebra_body"
+  ],
+  "vertebra_arch": [
+   "vertebra_arch"
+  ],
+  "vertebra_unspecified": [
+   "vertebra_body",
+   "vertebra_arch"
+  ],
+  "coccyx": [
+   "coccyx"
+  ],
+  "pelvis": [
+   "pelvis"
+  ],
+  "wrist": [
+   "wrist"
+  ],
+  "ankle": [
+   "ankle"
+  ],
+  "hand": [
+   "hand_fingers"
+  ],
+  "finger": [
+   "hand_fingers"
+  ],
+  "foot": [
+   "foot_toes"
+  ],
+  "toe": [
+   "foot_toes"
+  ],
+  "nose": [
+   "nose"
+  ],
+  "skull": [
+   "skull"
+  ],
+  "face": [
+   "skull"
+  ],
+  "leg_unspecified": [
+   "leg"
+  ],
+  "arm_unspecified": [
+   "arm"
+  ]
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "_doc": "Private-data slots: per-client values that come ONLY from the client's schedule / annual report (or the agent typing them). Never from the LLM. Stored only on the agent's device (DESIGN §3.5.2); plan values come from public edition plans. A rule references them as {\"slot\": \"<key>\"}. Holding-level values (start_date, insured_is_child) are referenced as {\"holding\": \"<key>\"}.",
+ "version": 1,
+ "slots": [
+  {
+   "key": "sum.death",
+   "unit": "ILS",
+   "label_he": "סכום ביטוח למוות מתאונה",
+   "cover_type": "death",
+   "source_hint_he": "דף פרטי הביטוח / דוח שנתי – שורת 'מוות מתאונה'"
+  },
+  {
+   "key": "sum.disability",
+   "unit": "ILS",
+   "label_he": "סכום ביטוח לנכות מתאונה",
+   "cover_type": "permanent_disability",
+   "source_hint_he": "דף פרטי הביטוח / דוח שנתי – שורת 'נכות'"
+  },
+  {
+   "key": "sum.fractures",
+   "unit": "ILS",
+   "label_he": "סכום ביטוח לשברים",
+   "cover_type": "fractures",
+   "source_hint_he": "דף פרטי הביטוח / דוח שנתי – שורת 'שברים'"
+  },
+  {
+   "key": "daily.hospital",
+   "unit": "ILS_per_day",
+   "label_he": "פיצוי יומי לאשפוז",
+   "cover_type": "hosp_daily",
+   "source_hint_he": "דף פרטי הביטוח – 'פיצוי יומי בגין אשפוז'"
+  },
+  {
+   "key": "days.hospital_waiting",
+   "unit": "days",
+   "label_he": "ימי המתנה לפיצוי אשפוז",
+   "cover_type": "hosp_daily",
+   "source_hint_he": "דף פרטי הביטוח (בחלק מהפוליסות קבוע בתנאים ולא בדף)"
+  },
+  {
+   "key": "weekly.recovery",
+   "unit": "ILS_per_week",
+   "label_he": "פיצוי שבועי לימי החלמה",
+   "cover_type": "recovery_weekly",
+   "source_hint_he": "דף פרטי הביטוח – 'ימי החלמה'"
+  },
+  {
+   "key": "sum.nursing",
+   "unit": "ILS",
+   "label_he": "סכום חד-פעמי לסיעוד מתאונה",
+   "cover_type": "nursing_lump",
+   "source_hint_he": "דף פרטי הביטוח – 'סיעוד'"
+  },
+  {
+   "key": "sum.burns",
+   "unit": "ILS",
+   "label_he": "סכום ביטוח לכוויות",
+   "cover_type": "burns",
+   "source_hint_he": "דף פרטי הביטוח – 'כוויות'"
+  }
+ ],
+ "holding_fields": [
+  {
+   "key": "start_date",
+   "type": "date",
+   "label_he": "תאריך תחילת הביטוח"
+  },
+  {
+   "key": "insured_is_child",
+   "type": "bool",
+   "label_he": "המבוטח הוא ילד במסגרת הפוליסה"
+  },
+  {
+   "key": "insured_age_at_start",
+   "type": "number",
+   "label_he": "גיל המבוטח בתחילת הביטוח"
+  },
+  {
+   "key": "last_renewal_date",
+   "type": "date",
+   "label_he": "תאריך חידוש אחרון"
+  },
+  {
+   "key": "doc_code",
+   "type": "string",
+   "label_he": "קוד מסמך / מהדורה (אם מודפס)"
+  }
+ ]
+}

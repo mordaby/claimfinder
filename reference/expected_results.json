@@ -1,0 +1,1053 @@
+{
+ "S1#0": {
+  "findings": [
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:permanent_disability",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "ב.2",
+     "ו.4.1"
+    ],
+    "ask": [
+     "permanent_disability"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:hosp_daily",
+    "status": "payable",
+    "amount": {
+     "lo": 750.0,
+     "hi": 750.0
+    },
+    "clauses": [
+     "ב.3",
+     "א.12",
+     "א.16"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:fractures",
+    "status": "payable",
+    "amount": {
+     "lo": 7000.0,
+     "hi": 7000.0
+    },
+    "clauses": [
+     "ב.4.1",
+     "ב.4.2.1",
+     "א.19",
+     "א.21"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 2,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:recovery_weekly",
+    "status": "question",
+    "amount": {
+     "lo": 12000.0,
+     "hi": 12000.0
+    },
+    "clauses": [
+     "ב.5",
+     "ב.5.1.1",
+     "ב.5.2.1",
+     "ב.5.2.2",
+     "ב.5.2.3"
+    ],
+    "ask": [
+     "hospital_consecutive_nights"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "hospital_days",
+     "weeks_off_work"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:permanent_disability",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "3"
+    ],
+    "ask": [
+     "permanent_disability"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:fractures",
+    "status": "provisional",
+    "amount": {
+     "lo": 2625.0,
+     "hi": 15000.0
+    },
+    "clauses": [
+     "4",
+     "4.2",
+     "4.3"
+    ],
+    "ask": [
+     "prior_fracture_same_site_paid"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:hosp_daily",
+    "status": "payable",
+    "amount": {
+     "lo": 600.0,
+     "hi": 600.0
+    },
+    "clauses": [
+     "6"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:nursing_lump",
+    "status": "question",
+    "amount": {
+     "lo": 50000.0,
+     "hi": 50000.0
+    },
+    "clauses": [
+     "7.3"
+    ],
+    "ask": [
+     "adl_lost_count"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   }
+  ],
+  "total": {
+   "lo": 10975.0,
+   "hi": 23350.0
+  },
+  "potential_hi": 62000.0,
+  "out_of_scope": [],
+  "questions": [
+   {
+    "key": "permanent_disability",
+    "tier": 2,
+    "stake": 180000.0
+   },
+   {
+    "key": "adl_lost_count",
+    "tier": 2,
+    "stake": 50000.0
+   },
+   {
+    "key": "hospital_consecutive_nights",
+    "tier": 2,
+    "stake": 12000.0
+   },
+   {
+    "key": "prior_fracture_same_site_paid",
+    "tier": 3,
+    "stake": 12375.0
+   }
+  ],
+  "checklist": [
+   "אלכוהול או סמים",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית"
+  ]
+ },
+ "S1#1": {
+  "findings": [
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:permanent_disability",
+    "status": "pending_external",
+    "amount": null,
+    "clauses": [
+     "ב.2",
+     "ו.4.1"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "permanent_disability"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:hosp_daily",
+    "status": "payable",
+    "amount": {
+     "lo": 750.0,
+     "hi": 750.0
+    },
+    "clauses": [
+     "ב.3",
+     "א.12",
+     "א.16"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:fractures",
+    "status": "payable",
+    "amount": {
+     "lo": 7000.0,
+     "hi": 7000.0
+    },
+    "clauses": [
+     "ב.4.1",
+     "ב.4.2.1",
+     "א.19",
+     "א.21"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 2,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:recovery_weekly",
+    "status": "payable",
+    "amount": {
+     "lo": 12000.0,
+     "hi": 12000.0
+    },
+    "clauses": [
+     "ב.5",
+     "ב.5.1.1",
+     "ב.5.2.1",
+     "ב.5.2.2",
+     "ב.5.2.3"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "hospital_consecutive_nights",
+     "weeks_off_work"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:permanent_disability",
+    "status": "pending_external",
+    "amount": null,
+    "clauses": [
+     "3"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "permanent_disability"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:fractures",
+    "status": "provisional",
+    "amount": {
+     "lo": 5250.0,
+     "hi": 15000.0
+    },
+    "clauses": [
+     "4",
+     "4.2",
+     "4.3"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "fracture_sites",
+     "prior_fracture_same_site_paid"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:hosp_daily",
+    "status": "payable",
+    "amount": {
+     "lo": 600.0,
+     "hi": 600.0
+    },
+    "clauses": [
+     "6"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   }
+  ],
+  "total": {
+   "lo": 25600.0,
+   "hi": 35350.0
+  },
+  "potential_hi": 0,
+  "out_of_scope": [],
+  "questions": [],
+  "checklist": [
+   "אלכוהול או סמים",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית"
+  ]
+ },
+ "S1_no_slots#0": {
+  "findings": [
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:permanent_disability",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "ב.2",
+     "ו.4.1"
+    ],
+    "ask": [
+     "permanent_disability"
+    ],
+    "missing_slots": [
+     "sum.disability"
+    ],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:hosp_daily",
+    "status": "needs_slots",
+    "amount": null,
+    "clauses": [
+     "ב.3",
+     "א.12",
+     "א.16"
+    ],
+    "ask": [],
+    "missing_slots": [
+     "daily.hospital",
+     "days.hospital_waiting"
+    ],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:fractures",
+    "status": "needs_slots",
+    "amount": null,
+    "clauses": [
+     "ב.4.1",
+     "ב.4.2.1",
+     "א.19",
+     "א.21"
+    ],
+    "ask": [],
+    "missing_slots": [
+     "sum.fractures"
+    ],
+    "blocked_by": [],
+    "verify_count": 2,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:recovery_weekly",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "ב.5",
+     "ב.5.1.1",
+     "ב.5.2.1",
+     "ב.5.2.2",
+     "ב.5.2.3"
+    ],
+    "ask": [
+     "hospital_consecutive_nights"
+    ],
+    "missing_slots": [
+     "weekly.recovery"
+    ],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "hospital_days",
+     "weeks_off_work"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:permanent_disability",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "3"
+    ],
+    "ask": [
+     "permanent_disability"
+    ],
+    "missing_slots": [
+     "sum.disability"
+    ],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:fractures",
+    "status": "needs_slots",
+    "amount": null,
+    "clauses": [
+     "4",
+     "4.2",
+     "4.3"
+    ],
+    "ask": [
+     "prior_fracture_same_site_paid"
+    ],
+    "missing_slots": [
+     "sum.fractures"
+    ],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:hosp_daily",
+    "status": "needs_slots",
+    "amount": null,
+    "clauses": [
+     "6"
+    ],
+    "ask": [],
+    "missing_slots": [
+     "daily.hospital"
+    ],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:nursing_lump",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "7.3"
+    ],
+    "ask": [
+     "adl_lost_count"
+    ],
+    "missing_slots": [
+     "sum.nursing"
+    ],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   }
+  ],
+  "total": {
+   "lo": 0,
+   "hi": 0
+  },
+  "potential_hi": 0,
+  "out_of_scope": [],
+  "questions": [
+   {
+    "key": "permanent_disability",
+    "tier": 2,
+    "stake": 180000.0
+   },
+   {
+    "key": "adl_lost_count",
+    "tier": 2,
+    "stake": 80000.0
+   },
+   {
+    "key": "hospital_consecutive_nights",
+    "tier": 2,
+    "stake": 50000.0
+   },
+   {
+    "key": "prior_fracture_same_site_paid",
+    "tier": 3,
+    "stake": 60000.0
+   }
+  ],
+  "checklist": [
+   "אלכוהול או סמים",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית"
+  ]
+ },
+ "S2#0": {
+  "findings": [
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:permanent_disability",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "ב.2",
+     "ו.4.1"
+    ],
+    "ask": [
+     "permanent_disability"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:hosp_daily",
+    "status": "payable",
+    "amount": {
+     "lo": 1250.0,
+     "hi": 1250.0
+    },
+    "clauses": [
+     "ב.3",
+     "א.12",
+     "א.16"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:fractures",
+    "status": "provisional",
+    "amount": {
+     "lo": 7000.0,
+     "hi": 20000.0
+    },
+    "clauses": [
+     "ב.4.1",
+     "ב.4.2.1",
+     "א.19",
+     "א.21"
+    ],
+    "ask": [
+     "fracture_sites=vertebra_unspecified"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 2,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:recovery_weekly",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "ב.5",
+     "ב.5.1.1",
+     "ב.5.2.1",
+     "ב.5.2.2",
+     "ב.5.2.3"
+    ],
+    "ask": [
+     "hospital_consecutive_nights"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:permanent_disability",
+    "status": "question",
+    "amount": null,
+    "clauses": [
+     "3"
+    ],
+    "ask": [
+     "permanent_disability"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:fractures",
+    "status": "provisional",
+    "amount": {
+     "lo": 2625.0,
+     "hi": 15000.0
+    },
+    "clauses": [
+     "4",
+     "4.2",
+     "4.3"
+    ],
+    "ask": [
+     "fracture_sites=vertebra_unspecified",
+     "prior_fracture_same_site_paid"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:hosp_daily",
+    "status": "payable",
+    "amount": {
+     "lo": 1200.0,
+     "hi": 1200.0
+    },
+    "clauses": [
+     "6"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "hospital_days"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:nursing_lump",
+    "status": "question",
+    "amount": {
+     "lo": 50000.0,
+     "hi": 50000.0
+    },
+    "clauses": [
+     "7.3"
+    ],
+    "ask": [
+     "adl_lost_count"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites",
+     "hospital_days"
+    ]
+   }
+  ],
+  "total": {
+   "lo": 12075.0,
+   "hi": 37450.0
+  },
+  "potential_hi": 50000.0,
+  "out_of_scope": [],
+  "questions": [
+   {
+    "key": "e_bike",
+    "tier": 1,
+    "stake": 87450.0
+   },
+   {
+    "key": "motor_two_wheeler",
+    "tier": 1,
+    "stake": 87450.0
+   },
+   {
+    "key": "permanent_disability",
+    "tier": 2,
+    "stake": 180000.0
+   },
+   {
+    "key": "adl_lost_count",
+    "tier": 2,
+    "stake": 50000.0
+   },
+   {
+    "key": "hospital_consecutive_nights",
+    "tier": 2,
+    "stake": 50000.0
+   },
+   {
+    "key": "fracture_sites=vertebra_unspecified",
+    "tier": 3,
+    "stake": 25375.0
+   },
+   {
+    "key": "prior_fracture_same_site_paid",
+    "tier": 3,
+    "stake": 12375.0
+   }
+  ],
+  "checklist": [
+   "אלכוהול או סמים",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית"
+  ]
+ },
+ "S3#0": {
+  "findings": [
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:fractures",
+    "status": "payable",
+    "amount": {
+     "lo": 600.0,
+     "hi": 600.0
+    },
+    "clauses": [
+     "ב.4.1",
+     "ב.4.2.1",
+     "א.19",
+     "א.21"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 2,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:fractures",
+    "status": "provisional",
+    "amount": {
+     "lo": 225.0,
+     "hi": 450.0
+    },
+    "clauses": [
+     "4",
+     "4.2",
+     "4.3"
+    ],
+    "ask": [
+     "prior_fracture_same_site_paid"
+    ],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 1,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   }
+  ],
+  "total": {
+   "lo": 825.0,
+   "hi": 1050.0
+  },
+  "potential_hi": 0,
+  "out_of_scope": [],
+  "questions": [
+   {
+    "key": "prior_fracture_same_site_paid",
+    "tier": 3,
+    "stake": 225.0
+   }
+  ],
+  "checklist": [
+   "אופניים/קורקינט חשמלי",
+   "אלכוהול או סמים",
+   "דו-גלגלי ממונע / טרקטורון",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "ספורט אתגרי",
+   "ספורט מקצועני/תחרותי",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית",
+   "רכיבה על סוסים / ספורט חורף"
+  ]
+ },
+ "S4#0": {
+  "findings": [],
+  "total": {
+   "lo": 0,
+   "hi": 0
+  },
+  "potential_hi": 0,
+  "out_of_scope": [],
+  "questions": [],
+  "checklist": [
+   "אופניים/קורקינט חשמלי",
+   "אלכוהול או סמים",
+   "דו-גלגלי ממונע / טרקטורון",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "ספורט אתגרי",
+   "ספורט מקצועני/תחרותי",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית",
+   "רכיבה על סוסים / ספורט חורף"
+  ]
+ },
+ "S5#0": {
+  "findings": [
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:fractures",
+    "status": "payable",
+    "amount": {
+     "lo": 7000.0,
+     "hi": 7000.0
+    },
+    "clauses": [
+     "ב.4.1",
+     "ב.4.2.1",
+     "א.19",
+     "א.21"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 3,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:fractures",
+    "status": "blocked",
+    "amount": {
+     "lo": 2625.0,
+     "hi": 5250.0
+    },
+    "clauses": [
+     "4",
+     "4.2",
+     "4.3"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [
+     "אופניים/קורקינט חשמלי (18.2)"
+    ],
+    "verify_count": 0,
+    "facts_used": [
+     "fracture_sites"
+    ]
+   }
+  ],
+  "total": {
+   "lo": 7000.0,
+   "hi": 7000.0
+  },
+  "potential_hi": 0,
+  "out_of_scope": [],
+  "questions": [
+   {
+    "key": "motor_two_wheeler",
+    "tier": 1,
+    "stake": 12250.0
+   }
+  ],
+  "checklist": [
+   "אלכוהול או סמים",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית"
+  ]
+ },
+ "S6#0": {
+  "findings": [
+   {
+    "holding": "h1",
+    "cover_id": "aig_active_0613:death",
+    "status": "payable",
+    "amount": {
+     "lo": 100000.0,
+     "hi": 100000.0
+    },
+    "clauses": [
+     "ב.1",
+     "ה.1"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "death",
+     "death_days_after"
+    ]
+   },
+   {
+    "holding": "h2",
+    "cover_id": "clal_haganat_atzmit_2018:death",
+    "status": "payable",
+    "amount": {
+     "lo": 150000.0,
+     "hi": 150000.0
+    },
+    "clauses": [
+     "2.1"
+    ],
+    "ask": [],
+    "missing_slots": [],
+    "blocked_by": [],
+    "verify_count": 0,
+    "facts_used": [
+     "death",
+     "death_days_after"
+    ]
+   }
+  ],
+  "total": {
+   "lo": 250000.0,
+   "hi": 250000.0
+  },
+  "potential_hi": 0,
+  "out_of_scope": [],
+  "questions": [],
+  "checklist": [
+   "אלכוהול או סמים",
+   "טיסה לא סדירה / כצוות",
+   "מצב רפואי קודם",
+   "פגיעה עצמית",
+   "פעילות בכוחות הביטחון",
+   "פעילות בלתי חוקית"
+  ]
+ },
+ "S7#0": {
+  "findings": [],
+  "total": {
+   "lo": 0,
+   "hi": 0
+  },
+  "potential_hi": 0,
+  "out_of_scope": [
+   "h1",
+   "h2"
+  ],
+  "questions": [],
+  "checklist": []
+ }
+}

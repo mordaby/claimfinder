@@ -1,0 +1,13 @@
+{
+  "_doc": "Canonical cross-insurer cover catalog. Each policy cover maps to exactly one cover_type. Used for 'which covers did the client buy', comparison tables, and question priority when amounts are unknown (rank_weight).",
+  "cover_types": [
+    {"id": "death", "label_he": "מוות מתאונה", "rank_weight": 100},
+    {"id": "permanent_disability", "label_he": "נכות צמיתה מתאונה", "rank_weight": 90},
+    {"id": "nursing_lump", "label_he": "סיעוד בעקבות תאונה", "rank_weight": 80},
+    {"id": "fractures", "label_he": "שברים", "rank_weight": 60},
+    {"id": "recovery_weekly", "label_he": "ימי החלמה", "rank_weight": 50},
+    {"id": "hosp_daily", "label_he": "פיצוי יומי באשפוז", "rank_weight": 40},
+    {"id": "burns", "label_he": "כוויות", "rank_weight": 40},
+    {"id": "hosp_companion", "label_he": "הוצאות מלווה באשפוז", "rank_weight": 20}
+  ]
+}

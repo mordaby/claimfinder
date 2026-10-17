@@ -1,0 +1,1018 @@
+{
+  "policy": {
+    "policy_id": "aig_active_0613",
+    "insurer_id": "aig",
+    "product_id": "aig_active",
+    "insurer": "AIG ישראל",
+    "product_family": "personal_accident",
+    "name_he": "AIG ACTIVE – ביטוח תאונות אישיות",
+    "doc_code": "30509",
+    "edition": "06/13",
+    "sold_from": "2013-07-03",
+    "sold_to": "2014-11-30",
+    "supersedes": null,
+    "superseded_by": "aig_active_0817",
+    "review": {
+      "status": "reviewed_demo",
+      "flags": [
+        {
+          "field": "clauses[ב.5, ב.5.1.1, ג.3, ג.6, ג.9, ה.1]",
+          "reason_he": "הנוסח הועתק דרך כלי שליפה ולא ישירות מה-PDF – לאמת מול המסמך בשלב ה-ingestion"
+        },
+        {
+          "field": "clauses[*].page_from/bboxes, source.sha256",
+          "reason_he": "מיקום הסעיפים בקובץ המקורי (עמוד ומלבן) טרם נרשם – להריץ provenance backfill ב-Studio"
+        },
+        {
+          "field": "tables.fracture_pct.row_quotes",
+          "reason_he": "נוסח לוח אחוזי השברים טרם נשמר כטקסט – האחוזים נקראו מה-PDF ידנית; לגבות בציטוט לכל שורה"
+        },
+        {
+          "field": "clauses['ב.4.1', 'ב.4.2.1', 'ב.5.2.1', 'ב.5.2.2', 'ג.2', 'ג.4', 'ג.7', 'ג.8', 'ו.4.1']",
+          "reason_he": "הנוסח שמור כקטע (עם ...) ולא כסעיף מלא – להשלים מה-PDF"
+        }
+      ]
+    },
+    "source": {
+      "url": "https://www.aig.co.il/wp-content/uploads/בתוקף-החל-מ-03.07.2013-ועד-ל-30.11.2014-AIG-ACTIVE-פוליסת.pdf",
+      "sha256": null,
+      "fetched_at": null,
+      "archived_path": null,
+      "pages": null
+    }
+  },
+  "scope": {
+    "expr": {
+      "eq": [
+        {
+          "var": "event_cause"
+        },
+        "accident"
+      ]
+    },
+    "clauses": [
+      "א.1"
+    ],
+    "label_he": "האירוע הוא תאונה כהגדרתה בפוליסה"
+  },
+  "clauses": [
+    {
+      "clause_no": "פתיח",
+      "title": "היקף הביטוח",
+      "text": "הביטוח על פי פוליסה זו מוגבל לכיסויים ולסכומים הנקובים במפרט בלבד.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "א.1",
+      "title": "תאונה",
+      "text": "אירוע פתאומי ובלתי צפוי מראש, אשר נגרם למבוטח במשך תקופת הביטוח, במישרין מהפעלת כוח פיזי על ידי אמצעי אלימות חיצוני וגלוי לעין, אשר מהווה, ללא תלות בגורם אחר, את הסיבה היחידה הישירה והמיידית למקרה הביטוח.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "א.3",
+      "title": "המפרט",
+      "text": "נספח המצורף לפוליסה והמהווה חלק בלתי נפרד ממנה, הכולל את מספר הפוליסה, פרטים אישיים של בעל הפוליסה, המבוטח/ים, תקופת הביטוח, סכומי הביטוח, דמי הביטוח וכיו\"ב.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "א.12",
+      "title": "אשפוז",
+      "text": "ריתוק של מבוטח לבית חולים על פי הוראות מפורשות של רופא מוסמך, לפחות 24 שעות רציפות, להוציא שהייה בחדר המיון.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "א.16",
+      "title": "זמן המתנה",
+      "text": "מספר הימים הרצופים, כפי שמצוין במפרט, החל מן היום הראשון בו אושפז המבוטח בבית חולים, בהם לא ישלם המבטח פיצוי יומי כלשהו למבוטח.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "א.19",
+      "title": "שבר",
+      "text": "פגיעה בשלמות העצם עם שינוי או ללא שינוי בצורתה המקורית (למעט שבר ספונטני - שבר הנגרם מעצמו), ובלבד שקיום הפגיעה הוכח בצילום רנטגן או T.C או MRI בלבד.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "א.21",
+      "title": "רגל",
+      "text": "כל אחת משתי הגפיים התחתונות בגוף האדם שמשמש להליכה, מלבד הקרסול, כף הרגל ואצבעות כף הרגל. למען הסר ספק יובהר כי עצמות ראש הירך וצוואר הירך הינן בגדר רגל ולא אגן.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.1",
+      "title": "אובדן חיים בתאונה",
+      "text": "מקרה הביטוח המסתיים באובדן חייו של אדם מבוטח, החל ממועד התאונה ועד לשלוש מאות שישים וחמישה ימים לאחר מועד התאונה.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.2",
+      "title": "נכות מלאה/חלקית צמיתה עקב תאונה",
+      "text": "מקרה ביטוח המסתיים בנכות מלאה/חלקית צמיתה של המבוטח.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.3",
+      "title": "פיצוי יומי בגין אשפוז",
+      "text": "כאשר התאונה מחייבת אשפוז המבוטח בבית חולים כמוגדר לעיל, ישלם המבטח למבוטח סכום כנקוב במפרט ביחס לכיסוי ביטוחי זה, בגין כל יום אשפוז, אך לא בגין יותר מ-180 ימי אשפוז, והכל לאחר גמר תקופת ההמתנה כמצוין במפרט.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.4.1",
+      "title": "שברים – התחייבות המבטח",
+      "text": "...תוך תקופה של שלושה (3) חודשים מיום קרות אירוע השבר התאונתי, ישלם המבטח למבוטח, אחוז (%) מסכום הביטוח הנקוב במפרט לסעיף זה, כמצוין להלן בלוח הפיצויים...",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.4.2.1",
+      "title": "שברים – ריבוי שברים",
+      "text": "במידה ויותר מעצם אחת נשברה, כתוצאה מאותו אירוע שבר תאונתי, יחוברו סכומי הביטוח... ובלבד שסכום הביטוח הכולל לא יעלה על סכום הביטוח המצוין במפרט עבור כל מבוטח.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.4.3",
+      "title": "שברים – סייג",
+      "text": "כל שבר הנגרם מתהליך הדרגתי מתמשך.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.5",
+      "title": "ימי החלמה – הרחבה",
+      "text": "מוסכם ומוצהר בזאת כי בכפוף לציון מפורש של הכיסוי במפרט, תורחב הפוליסה כדלהלן:",
+      "text_source": "webfetch_quote_unverified",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.5.1.1",
+      "title": "ימי החלמה – התחייבות המבטח",
+      "text": "מוסכם בזאת כי אם המבוטח נפגע בגופו, עקב אירוע תאונתי, וכתוצאה מתאונה זו, וללא תלות בכל סיבה אחרת, הוא אינו יכול זמנית לעבוד באורח מלא בעבודתו, ישלם המבטח למבוטח את הסכום הנקוב במפרט כפיצוי שבועי בגין ימי החלמה בכפוף לתנאים המיוחדים להרחבה זו.",
+      "text_source": "webfetch_quote_unverified",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.5.2.1",
+      "title": "ימי החלמה – תנאי זכאות",
+      "text": "א. המבוטח אושפז בבית חולים במשך שלושה לילות רצופים כתוצאה מן התאונה; ב. רופא מומחה בתחום הרלוונטי או רופא תעסוקתי אישר בכתב את אי יכולתו הזמנית של המבוטח לעבוד באורח מלא בעבודתו כתוצאה מן התאונה; ג. המבוטח המציא למבטח אישור בכתב ממעבידו (במקרה שהמבוטח הינו עובד שכיר) על היעדרותו בפועל מהעבודה...",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.5.2.2",
+      "title": "ימי החלמה – תקופה",
+      "text": "...מיום שחרורו של המבוטח מבית חולים ועד ליום חזרת המבוטח לעבודתו או עד לתום אישור הרופא המומחה... לפי המוקדם, והכל למשך תקופה שלא תעלה על 12 שבועות.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ב.5.2.3",
+      "title": "ימי החלמה – ילדים",
+      "text": "הכיסוי הביטוחי של ימי החלמה לא יחול על ילדי המבוטח.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.2",
+      "title": "סייג – אלכוהול, סמים, פגיעה עצמית ועוד",
+      "text": "איבוד לדעת או ניסיון לכך, טירוף הדעת, שימוש באלכוהול, שימוש בסמים... חבלה גופנית שהמבוטח גרם לעצמו במתכוון, הריון או לידה, הפלה או טיפולי הפריה.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.3",
+      "title": "סייג – טיסה",
+      "text": "הימצאותו של המבוטח במהלך טיסה שאינה טיסה סדירה של חברה בעלת רישיון הובלת נוסעים, לרבות טיסה בכלי טייס חד מנועי, או בכלי שהטסתו אינה כדין, או הימצאותו של המבוטח בטיסה כלשהי כטייס או איש צוות אוויר.",
+      "text_source": "webfetch_quote_unverified",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.4",
+      "title": "סייג – מצב רפואי קודם",
+      "text": "...מצב רפואי קודם... שאובחנו במבוטח לפני מועד הצטרפותו לביטוח... חריג זה יהא מוגבל בזמן: פחות מ-65 שנים - שנה אחת מתחילת תקופת הביטוח; 65 שנים או יותר - חצי שנה.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.5",
+      "title": "סייג – דו-גלגלי ממונע",
+      "text": "נסיעה ברכב דו גלגלי ממונע או טרקטורון (בין כנהג ובין כנוסע).",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.6",
+      "title": "סייג – כוחות הביטחון",
+      "text": "השתתפות בפעילות של כוחות הביטחון, לרבות צבא, משטרה, עובדי אבטחה, לרבות בתרגילים או באימונים מכל סוג שהוא.",
+      "text_source": "webfetch_quote_unverified",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.7",
+      "title": "סייג – ספורט מקצועני",
+      "text": "פעילותו של המבוטח כספורטאי רשום בקבוצת ספורט ו/או עיסוקו של המבוטח בענף ספורט כלשהו בצורה מקצוענית...",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.8",
+      "title": "סייג – סוסים וספורט חורף",
+      "text": "רכיבה על סוסים ו/או עיסוק בספורט חורף הכולל גלישה או החלקה על שלג או קרח...",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ג.9",
+      "title": "סייג – פעילות בלתי חוקית או אלימה",
+      "text": "השתתפות מרצון של המבוטח בפעילות בלתי חוקית, כל הפרה או ניסיון להפר את החוק, התנגדות למעצר, השתתפות פעילה של המבוטח בפעילות אלימה, מעשה חבלה, שביתה, מהפכה, מרד, פרעות, או מהומות.",
+      "text_source": "webfetch_quote_unverified",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ה.1",
+      "title": "תשלום במקרה מוות",
+      "text": "מקרה ביטוח שהסתיים במות המבוטח - תגמולי הביטוח ישולמו למוטבים הקבועים במפרט הפוליסה, ובהיעדר קביעה כאמור - ליורשיו החוקיים של המבוטח, בגובה הסכום הרשום במפרט בגין מוות עקב תאונה.",
+      "text_source": "webfetch_quote_unverified",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ו.4.1",
+      "title": "קביעת הנכות",
+      "text": "דרגת הנכות הרפואית... תיקבע... על פי המבחנים... לתקנות הביטוח הלאומי (קביעת דרגת נכות לנפגעי עבודה)...",
+      "text_source": "webfetch_excerpt",
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "ו.11",
+      "title": "התיישנות",
+      "text": "תקופת ההתיישנות של התביעה לתגמולי ביטוח היא שלוש שנים מיום מקרה הביטוח.",
+      "text_source": "webfetch_excerpt",
+      "text_complete": true,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    }
+  ],
+  "tables": {
+    "fracture_pct": {
+      "clauses": [
+        "ב.4.1"
+      ],
+      "multi_clauses": [
+        "ב.4.2.1"
+      ],
+      "cap_pct": 100,
+      "same_bone_once": false,
+      "rows": {
+        "vertebra_body": 100,
+        "pelvis": 100,
+        "vertebra_arch": 35,
+        "skull": 35,
+        "chest": 35,
+        "shoulder": 35,
+        "arm": 35,
+        "leg": 35,
+        "wrist": 10,
+        "ankle": 10,
+        "coccyx": 10,
+        "hand_fingers": 3,
+        "foot_toes": 3,
+        "nose": 3
+      },
+      "row_quotes": null
+    }
+  },
+  "site_map": {
+    "femoral_neck": {
+      "to": [
+        "leg"
+      ],
+      "clauses": [
+        "א.21"
+      ],
+      "note_he": "מוגדר במפורש: צוואר וראש הירך = רגל ולא אגן",
+      "quote": "עצמות ראש הירך וצוואר הירך הינן בגדר רגל ולא אגן"
+    },
+    "femoral_head": {
+      "to": [
+        "leg"
+      ],
+      "clauses": [
+        "א.21"
+      ],
+      "quote": "עצמות ראש הירך וצוואר הירך הינן בגדר רגל ולא אגן"
+    }
+  },
+  "covers": [
+    {
+      "cover_id": "aig_active_0613:death",
+      "cover_type": "death",
+      "name_he": "אובדן חיים בתאונה",
+      "clauses": [
+        "ב.1",
+        "ה.1"
+      ],
+      "slots": [
+        "sum.death"
+      ],
+      "rule": {
+        "gate": {
+          "eq": [
+            {
+              "var": "death"
+            },
+            true
+          ]
+        },
+        "conditions": [
+          {
+            "expr": {
+              "lte": [
+                {
+                  "var": "death_days_after"
+                },
+                365
+              ]
+            },
+            "clauses": [
+              "ב.1"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "הפטירה אירעה עד 365 יום מהתאונה"
+          }
+        ],
+        "named": {},
+        "amount": {
+          "slot": "sum.death"
+        },
+        "formula_he": "סכום הביטוח למוות"
+      },
+      "evidence": [
+        {
+          "claim_he": "חלון של 365 יום מהתאונה ועד הפטירה",
+          "clause": "ב.1",
+          "quote": "ועד לשלוש מאות שישים וחמישה ימים לאחר מועד התאונה"
+        },
+        {
+          "claim_he": "הסכום = סכום המוות שבמפרט",
+          "clause": "ה.1",
+          "quote": "בגובה הסכום הרשום במפרט בגין מוות עקב תאונה"
+        }
+      ]
+    },
+    {
+      "cover_id": "aig_active_0613:permanent_disability",
+      "cover_type": "permanent_disability",
+      "name_he": "נכות מלאה/חלקית צמיתה עקב תאונה",
+      "clauses": [
+        "ב.2",
+        "ו.4.1"
+      ],
+      "slots": [
+        "sum.disability"
+      ],
+      "rule": {
+        "gate": {
+          "eq": [
+            {
+              "var": "permanent_disability"
+            },
+            "determined"
+          ]
+        },
+        "pending_when": {
+          "eq": [
+            {
+              "var": "permanent_disability"
+            },
+            "pending"
+          ]
+        },
+        "ask_when": {
+          "or": [
+            {
+              "gte": [
+                {
+                  "var": "hospital_days"
+                },
+                3
+              ]
+            },
+            {
+              "any_in": [
+                {
+                  "var": "fracture_sites"
+                },
+                {
+                  "set": "major_fracture_sites"
+                }
+              ]
+            }
+          ]
+        },
+        "conditions": [],
+        "named": {
+          "pct": {
+            "var": "disability_pct"
+          }
+        },
+        "amount": {
+          "div": [
+            {
+              "mul": [
+                {
+                  "ref": "pct"
+                },
+                {
+                  "slot": "sum.disability"
+                }
+              ]
+            },
+            100
+          ]
+        },
+        "formula_he": "{pct}% × סכום ביטוח הנכות (אחוז לפי מבחני הביטוח הלאומי)"
+      },
+      "evidence": [
+        {
+          "claim_he": "הכיסוי: נכות מלאה או חלקית צמיתה",
+          "clause": "ב.2",
+          "quote": "מקרה ביטוח המסתיים בנכות מלאה/חלקית צמיתה של המבוטח"
+        },
+        {
+          "claim_he": "אחוז הנכות לפי מבחני הביטוח הלאומי",
+          "clause": "ו.4.1",
+          "quote": "לתקנות הביטוח הלאומי (קביעת דרגת נכות לנפגעי עבודה)"
+        }
+      ]
+    },
+    {
+      "cover_id": "aig_active_0613:hosp_daily",
+      "cover_type": "hosp_daily",
+      "name_he": "פיצוי יומי בגין אשפוז בבית חולים עקב תאונה",
+      "clauses": [
+        "ב.3",
+        "א.12",
+        "א.16"
+      ],
+      "slots": [
+        "daily.hospital",
+        "days.hospital_waiting"
+      ],
+      "rule": {
+        "gate": {
+          "gt": [
+            {
+              "var": "hospital_days"
+            },
+            0
+          ]
+        },
+        "conditions": [
+          {
+            "expr": {
+              "not": [
+                {
+                  "var": "er_only"
+                }
+              ]
+            },
+            "clauses": [
+              "א.12"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "אשפוז של 24 שעות רצופות לפחות, לא רק חדר מיון"
+          }
+        ],
+        "named": {
+          "days": {
+            "clamp": [
+              {
+                "sub": [
+                  {
+                    "var": "hospital_days"
+                  },
+                  {
+                    "slot": "days.hospital_waiting"
+                  }
+                ]
+              },
+              0,
+              180
+            ]
+          }
+        },
+        "amount": {
+          "mul": [
+            {
+              "ref": "days"
+            },
+            {
+              "slot": "daily.hospital"
+            }
+          ]
+        },
+        "formula_he": "{days} ימים × הפיצוי היומי (אחרי ימי ההמתנה שבמפרט, עד 180 ימים)"
+      },
+      "evidence": [
+        {
+          "claim_he": "לכל היותר 180 ימי אשפוז",
+          "clause": "ב.3",
+          "quote": "אך לא בגין יותר מ-180 ימי אשפוז"
+        },
+        {
+          "claim_he": "התשלום אחרי תקופת ההמתנה שבמפרט",
+          "clause": "ב.3",
+          "quote": "לאחר גמר תקופת ההמתנה כמצוין במפרט"
+        },
+        {
+          "claim_he": "אשפוז = 24 שעות רצופות, לא חדר מיון",
+          "clause": "א.12",
+          "quote": "לפחות 24 שעות רציפות, להוציא שהייה בחדר המיון"
+        }
+      ]
+    },
+    {
+      "cover_id": "aig_active_0613:fractures",
+      "cover_type": "fractures",
+      "name_he": "שברים",
+      "clauses": [
+        "ב.4.1",
+        "ב.4.2.1",
+        "א.19",
+        "א.21"
+      ],
+      "slots": [
+        "sum.fractures"
+      ],
+      "rule": {
+        "gate": {
+          "nonempty": [
+            {
+              "var": "fracture_sites"
+            }
+          ]
+        },
+        "conditions": [
+          {
+            "expr": {
+              "in": [
+                {
+                  "var": "fracture_proof"
+                },
+                [
+                  "xray",
+                  "ct",
+                  "mri"
+                ]
+              ]
+            },
+            "clauses": [
+              "א.19"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "השבר הוכח בצילום רנטגן, CT או MRI"
+          },
+          {
+            "expr": {
+              "not": [
+                {
+                  "var": "fracture_degenerative"
+                }
+              ]
+            },
+            "clauses": [
+              "ב.4.3",
+              "א.19"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "השבר אינו ספונטני ואינו מתהליך הדרגתי"
+          }
+        ],
+        "named": {
+          "pct": {
+            "fracture_pct": {
+              "table": "fracture_pct",
+              "sites": {
+                "var": "fracture_sites"
+              }
+            }
+          }
+        },
+        "amount": {
+          "div": [
+            {
+              "mul": [
+                {
+                  "ref": "pct"
+                },
+                {
+                  "slot": "sum.fractures"
+                }
+              ]
+            },
+            100
+          ]
+        },
+        "formula_he": "{pct}% מסכום ביטוח השברים"
+      },
+      "evidence": [
+        {
+          "claim_he": "אחוז מסכום ביטוח השברים לפי לוח הפיצויים",
+          "clause": "ב.4.1",
+          "quote": "אחוז (%) מסכום הביטוח הנקוב במפרט לסעיף זה"
+        },
+        {
+          "claim_he": "צוואר הירך = רגל (לא אגן)",
+          "clause": "א.21",
+          "quote": "עצמות ראש הירך וצוואר הירך הינן בגדר רגל ולא אגן"
+        },
+        {
+          "claim_he": "נדרש צילום רנטגן / CT / MRI",
+          "clause": "א.19",
+          "quote": "הוכח בצילום רנטגן או T.C או MRI בלבד"
+        },
+        {
+          "claim_he": "כמה עצמות באותו אירוע – מחברים, עד סכום הביטוח",
+          "clause": "ב.4.2.1",
+          "quote": "ובלבד שסכום הביטוח הכולל לא יעלה על סכום הביטוח המצוין במפרט"
+        }
+      ]
+    },
+    {
+      "cover_id": "aig_active_0613:recovery_weekly",
+      "cover_type": "recovery_weekly",
+      "name_he": "פיצוי בגין ימי החלמה עקב תאונה",
+      "clauses": [
+        "ב.5",
+        "ב.5.1.1",
+        "ב.5.2.1",
+        "ב.5.2.2",
+        "ב.5.2.3"
+      ],
+      "slots": [
+        "weekly.recovery"
+      ],
+      "rule": {
+        "gate": {
+          "gte": [
+            {
+              "var": "hospital_consecutive_nights"
+            },
+            3
+          ]
+        },
+        "ask_when": {
+          "gte": [
+            {
+              "var": "hospital_days"
+            },
+            3
+          ]
+        },
+        "conditions": [
+          {
+            "expr": {
+              "not": [
+                {
+                  "holding": "insured_is_child"
+                }
+              ]
+            },
+            "clauses": [
+              "ב.5.2.3"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "המבוטח אינו ילד במסגרת הפוליסה"
+          }
+        ],
+        "named": {
+          "weeks": {
+            "min": [
+              {
+                "var": "weeks_off_work"
+              },
+              12
+            ]
+          }
+        },
+        "amount": {
+          "mul": [
+            {
+              "ref": "weeks"
+            },
+            {
+              "slot": "weekly.recovery"
+            }
+          ]
+        },
+        "formula_he": "{weeks} שבועות × הפיצוי השבועי (עד 12 שבועות)",
+        "docs_he": [
+          {
+            "text": "אישור רופא מומחה או רופא תעסוקתי על אי יכולת זמנית לעבוד",
+            "clauses": [
+              "ב.5.2.1"
+            ]
+          },
+          {
+            "text": "שכיר: אישור מעסיק על תקופת ההיעדרות; עצמאי/לא עובד: אישור רופא על ריתוק מלא לבית",
+            "clauses": [
+              "ב.5.2.1"
+            ]
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "claim_he": "תנאי: 3 לילות אשפוז רצופים",
+          "clause": "ב.5.2.1",
+          "quote": "במשך שלושה לילות רצופים"
+        },
+        {
+          "claim_he": "עד 12 שבועות",
+          "clause": "ב.5.2.2",
+          "quote": "שלא תעלה על 12 שבועות"
+        },
+        {
+          "claim_he": "לא חל על ילדים",
+          "clause": "ב.5.2.3",
+          "quote": "לא יחול על ילדי המבוטח"
+        },
+        {
+          "claim_he": "פיצוי שבועי לפי המפרט",
+          "clause": "ב.5.1.1",
+          "quote": "את הסכום הנקוב במפרט כפיצוי שבועי"
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "fact": "motor_two_wheeler",
+      "clauses": [
+        "ג.5"
+      ],
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "road"
+        ]
+      }
+    },
+    {
+      "fact": "e_bike",
+      "clauses": [
+        "ג.5"
+      ],
+      "ambiguous": true,
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "road"
+        ]
+      },
+      "note_he": "לא ברור אם אופניים/קורקינט חשמלי נחשבים 'רכב דו גלגלי ממונע' – לבדיקת מומחה; לא חוסם אוטומטית"
+    },
+    {
+      "fact": "alcohol_or_drugs",
+      "clauses": [
+        "ג.2"
+      ]
+    },
+    {
+      "fact": "self_harm",
+      "clauses": [
+        "ג.2"
+      ]
+    },
+    {
+      "fact": "non_scheduled_flight",
+      "clauses": [
+        "ג.3"
+      ]
+    },
+    {
+      "fact": "security_forces_activity",
+      "clauses": [
+        "ג.6"
+      ]
+    },
+    {
+      "fact": "pro_sport",
+      "clauses": [
+        "ג.7"
+      ],
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "sport"
+        ]
+      }
+    },
+    {
+      "fact": "horse_or_winter_sport",
+      "clauses": [
+        "ג.8"
+      ],
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "sport"
+        ]
+      }
+    },
+    {
+      "fact": "illegal_activity",
+      "clauses": [
+        "ג.9"
+      ]
+    },
+    {
+      "id": "pre_existing",
+      "clauses": [
+        "ג.4"
+      ],
+      "expr": {
+        "and": [
+          {
+            "var": "pre_existing_related"
+          },
+          {
+            "lt": [
+              {
+                "days_between": [
+                  {
+                    "holding": "start_date"
+                  },
+                  {
+                    "var": "event_date"
+                  }
+                ]
+              },
+              365
+            ]
+          }
+        ]
+      },
+      "ask_when": {
+        "lt": [
+          {
+            "days_between": [
+              {
+                "holding": "start_date"
+              },
+              {
+                "var": "event_date"
+              }
+            ]
+          },
+          365
+        ]
+      },
+      "note_he": "החריג תקף רק בשנה הראשונה (חצי שנה אם המבוטח הצטרף בגיל 65+)",
+      "label_he": "מצב רפואי קודם"
+    }
+  ],
+  "claims": {
+    "limitation_years": 3,
+    "clauses": [
+      "ו.11"
+    ],
+    "notify_he": "להודיע למבטח בהקדם האפשרי",
+    "general_docs_he": [
+      "תביעה בכתב + תעודת רופא",
+      "מסמכים רפואיים וכתב ויתור סודיות"
+    ]
+  }
+}

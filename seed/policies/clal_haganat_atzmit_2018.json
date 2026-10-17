@@ -1,0 +1,679 @@
+{
+  "policy": {
+    "policy_id": "clal_haganat_atzmit_2018",
+    "insurer_id": "clal",
+    "product_id": "clal_haganat_atzmit",
+    "insurer": "כלל ביטוח",
+    "product_family": "personal_accident",
+    "name_he": "מדיכלל הגנה עצמית (2018)",
+    "doc_code": null,
+    "edition": "2018 (טקסט שחולץ מציג 094102 / 8102 – ספרות הפוכות)",
+    "sold_from": null,
+    "sold_to": null,
+    "review": {
+      "status": "draft",
+      "flags": [
+        {
+          "field": "covers[hosp_daily].max_days",
+          "value": 108,
+          "reason_he": "חשד לספרות הפוכות (אולי 180)"
+        },
+        {
+          "field": "covers[death].window_days",
+          "value": 361,
+          "reason_he": "חשד לספרות הפוכות (אולי 365)"
+        },
+        {
+          "field": "site_map.femoral_neck",
+          "reason_he": "ההגדרות לא קובעות אם צוואר הירך הוא רגל או אגן"
+        },
+        {
+          "field": "covers[nursing_lump].waiting",
+          "reason_he": "תקופת ההמתנה לסיעוד לא חולצה בבירור"
+        },
+        {
+          "field": "clauses",
+          "reason_he": "נוסח הסעיפים טרם נשמר – להריץ ingestion על ה-PDF"
+        }
+      ]
+    },
+    "source": {
+      "url": "https://www.clalbit.co.il/media/9003/מדיכלל-הגנה-עצמית2018-נמכר.pdf",
+      "sha256": null,
+      "fetched_at": null,
+      "archived_path": null,
+      "pages": null
+    }
+  },
+  "scope": {
+    "expr": {
+      "eq": [
+        {
+          "var": "event_cause"
+        },
+        "accident"
+      ]
+    },
+    "clauses": [
+      "1"
+    ],
+    "label_he": "האירוע הוא תאונה כהגדרתה בפוליסה"
+  },
+  "clauses": [
+    {
+      "clause_no": "1",
+      "title": "הגדרות – תאונה",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "2.1",
+      "title": "מוות מתאונה",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "3",
+      "title": "נכות צמיתה מתאונה",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "4",
+      "title": "שברים",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "4.2",
+      "title": "הגדרות רגל ואגן",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "4.3",
+      "title": "טבלת שברים",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "5",
+      "title": "כוויות",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "6",
+      "title": "פיצוי יומי באשפוז",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "7.3",
+      "title": "סיעוד בעקבות תאונה",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    },
+    {
+      "clause_no": "18.2",
+      "title": "סייגים",
+      "text": null,
+      "text_source": null,
+      "text_complete": false,
+      "page_from": null,
+      "page_to": null,
+      "bboxes": null,
+      "verified": null
+    }
+  ],
+  "tables": {
+    "fracture_pct": {
+      "clauses": [
+        "4.3"
+      ],
+      "multi_clauses": [
+        "4"
+      ],
+      "cap_pct": 100,
+      "same_bone_once": true,
+      "rows": {
+        "vertebra_body": 100,
+        "pelvis": 100,
+        "skull": 35,
+        "chest": 35,
+        "shoulder": 35,
+        "arm": 35,
+        "leg": 35,
+        "vertebra_arch": 35,
+        "wrist": 10,
+        "ankle": 10,
+        "coccyx": 10,
+        "hand_fingers": 3,
+        "foot_toes": 3,
+        "nose": 3
+      },
+      "row_quotes": null
+    }
+  },
+  "site_map": {
+    "femoral_neck": {
+      "to": [
+        "leg",
+        "pelvis"
+      ],
+      "ambiguous": true,
+      "clauses": [
+        "4.2"
+      ],
+      "note_he": "ההגדרות של רגל ואגן לא מזכירות את צוואר הירך. רגל = 35%, אגן = 100%. כדאי לתבוע לפי הסיווג הגבוה."
+    },
+    "femoral_head": {
+      "to": [
+        "leg",
+        "pelvis"
+      ],
+      "ambiguous": true,
+      "clauses": [
+        "4.2"
+      ]
+    }
+  },
+  "covers": [
+    {
+      "cover_id": "clal_haganat_atzmit_2018:death",
+      "cover_type": "death",
+      "name_he": "מוות מתאונה",
+      "clauses": [
+        "2.1"
+      ],
+      "slots": [
+        "sum.death"
+      ],
+      "rule": {
+        "gate": {
+          "eq": [
+            {
+              "var": "death"
+            },
+            true
+          ]
+        },
+        "conditions": [
+          {
+            "expr": {
+              "lte": [
+                {
+                  "var": "death_days_after"
+                },
+                361
+              ]
+            },
+            "clauses": [
+              "2.1"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "הפטירה אירעה בתוך חלון הימים שבסעיף 2.1 (ערך לבדיקה)"
+          }
+        ],
+        "named": {},
+        "amount": {
+          "slot": "sum.death"
+        },
+        "formula_he": "סכום הביטוח למוות"
+      },
+      "evidence": []
+    },
+    {
+      "cover_id": "clal_haganat_atzmit_2018:permanent_disability",
+      "cover_type": "permanent_disability",
+      "name_he": "נכות צמיתה מתאונה",
+      "clauses": [
+        "3"
+      ],
+      "slots": [
+        "sum.disability"
+      ],
+      "rule": {
+        "gate": {
+          "eq": [
+            {
+              "var": "permanent_disability"
+            },
+            "determined"
+          ]
+        },
+        "pending_when": {
+          "eq": [
+            {
+              "var": "permanent_disability"
+            },
+            "pending"
+          ]
+        },
+        "ask_when": {
+          "or": [
+            {
+              "gte": [
+                {
+                  "var": "hospital_days"
+                },
+                3
+              ]
+            },
+            {
+              "any_in": [
+                {
+                  "var": "fracture_sites"
+                },
+                {
+                  "set": "major_fracture_sites"
+                }
+              ]
+            }
+          ]
+        },
+        "conditions": [],
+        "named": {
+          "pct": {
+            "var": "disability_pct"
+          }
+        },
+        "amount": {
+          "div": [
+            {
+              "mul": [
+                {
+                  "ref": "pct"
+                },
+                {
+                  "slot": "sum.disability"
+                }
+              ]
+            },
+            100
+          ]
+        },
+        "formula_he": "{pct}% × סכום ביטוח הנכות (לפי טבלת איברים ומבחני הביטוח הלאומי; נכות קודמת מנוכה)"
+      },
+      "evidence": []
+    },
+    {
+      "cover_id": "clal_haganat_atzmit_2018:fractures",
+      "cover_type": "fractures",
+      "name_he": "שברים",
+      "clauses": [
+        "4",
+        "4.2",
+        "4.3"
+      ],
+      "slots": [
+        "sum.fractures"
+      ],
+      "rule": {
+        "gate": {
+          "nonempty": [
+            {
+              "var": "fracture_sites"
+            }
+          ]
+        },
+        "conditions": [
+          {
+            "expr": {
+              "in": [
+                {
+                  "var": "fracture_proof"
+                },
+                [
+                  "xray",
+                  "ct",
+                  "mri"
+                ]
+              ]
+            },
+            "clauses": [
+              "4"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "השבר הוכח בצילום רנטגן, CT או MRI"
+          }
+        ],
+        "named": {
+          "pct": {
+            "fracture_pct": {
+              "table": "fracture_pct",
+              "sites": {
+                "var": "fracture_sites"
+              }
+            }
+          },
+          "factor": {
+            "if": [
+              {
+                "var": "prior_fracture_same_site_paid"
+              },
+              0.5,
+              1
+            ]
+          }
+        },
+        "amount": {
+          "div": [
+            {
+              "mul": [
+                {
+                  "ref": "pct"
+                },
+                {
+                  "ref": "factor"
+                },
+                {
+                  "slot": "sum.fractures"
+                }
+              ]
+            },
+            100
+          ]
+        },
+        "formula_he": "{pct}% × {factor} מסכום ביטוח השברים (50% אם כבר שולם על שבר באותו מקום)"
+      },
+      "evidence": []
+    },
+    {
+      "cover_id": "clal_haganat_atzmit_2018:burns",
+      "cover_type": "burns",
+      "name_he": "כוויות",
+      "clauses": [
+        "5"
+      ],
+      "slots": [
+        "sum.burns"
+      ],
+      "rule": {
+        "gate": {
+          "eq": [
+            {
+              "var": "burns"
+            },
+            true
+          ]
+        },
+        "conditions": [],
+        "named": {},
+        "amount": null,
+        "manual_he": "חישוב כוויות (שטח גוף ודרגה) לא ממודל ב-MVP – להציג את הסעיף לבדיקה ידנית"
+      },
+      "evidence": []
+    },
+    {
+      "cover_id": "clal_haganat_atzmit_2018:hosp_daily",
+      "cover_type": "hosp_daily",
+      "name_he": "פיצוי יומי באשפוז",
+      "clauses": [
+        "6"
+      ],
+      "slots": [
+        "daily.hospital"
+      ],
+      "rule": {
+        "gate": {
+          "gt": [
+            {
+              "var": "hospital_days"
+            },
+            0
+          ]
+        },
+        "conditions": [
+          {
+            "expr": {
+              "not": [
+                {
+                  "var": "er_only"
+                }
+              ]
+            },
+            "clauses": [
+              "6"
+            ],
+            "on_unknown": "verify",
+            "verify_he": "אשפוז בבית חולים כללי, לא רק חדר מיון"
+          }
+        ],
+        "named": {
+          "days": {
+            "clamp": [
+              {
+                "sub": [
+                  {
+                    "var": "hospital_days"
+                  },
+                  2
+                ]
+              },
+              0,
+              108
+            ]
+          }
+        },
+        "amount": {
+          "mul": [
+            {
+              "ref": "days"
+            },
+            {
+              "slot": "daily.hospital"
+            }
+          ]
+        },
+        "formula_he": "{days} ימים × הפיצוי היומי (אחרי יומיים המתנה)"
+      },
+      "evidence": []
+    },
+    {
+      "cover_id": "clal_haganat_atzmit_2018:nursing_lump",
+      "cover_type": "nursing_lump",
+      "name_he": "סיעוד בעקבות תאונה – סכום חד-פעמי",
+      "clauses": [
+        "7.3"
+      ],
+      "slots": [
+        "sum.nursing"
+      ],
+      "rule": {
+        "gate": {
+          "gte": [
+            {
+              "var": "adl_lost_count"
+            },
+            3
+          ]
+        },
+        "ask_when": {
+          "or": [
+            {
+              "gte": [
+                {
+                  "var": "hospital_days"
+                },
+                3
+              ]
+            },
+            {
+              "any_in": [
+                {
+                  "var": "fracture_sites"
+                },
+                {
+                  "set": "major_fracture_sites"
+                }
+              ]
+            }
+          ]
+        },
+        "conditions": [],
+        "named": {},
+        "amount": {
+          "slot": "sum.nursing"
+        },
+        "formula_he": "סכום הסיעוד החד-פעמי שבמפרט"
+      },
+      "evidence": []
+    }
+  ],
+  "exclusions": [
+    {
+      "fact": "motor_two_wheeler",
+      "clauses": [
+        "18.2"
+      ],
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "road"
+        ]
+      }
+    },
+    {
+      "fact": "e_bike",
+      "clauses": [
+        "18.2"
+      ],
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "road"
+        ]
+      }
+    },
+    {
+      "fact": "alcohol_or_drugs",
+      "clauses": [
+        "18.2"
+      ]
+    },
+    {
+      "fact": "self_harm",
+      "clauses": [
+        "18.2"
+      ]
+    },
+    {
+      "fact": "non_scheduled_flight",
+      "clauses": [
+        "18.2"
+      ]
+    },
+    {
+      "fact": "security_forces_activity",
+      "clauses": [
+        "18.2"
+      ]
+    },
+    {
+      "fact": "pro_sport",
+      "clauses": [
+        "18.2"
+      ],
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "sport"
+        ]
+      }
+    },
+    {
+      "fact": "extreme_sport",
+      "clauses": [
+        "18.2"
+      ],
+      "ask_when": {
+        "eq": [
+          {
+            "var": "event_context"
+          },
+          "sport"
+        ]
+      }
+    },
+    {
+      "fact": "illegal_activity",
+      "clauses": [
+        "18.2"
+      ]
+    },
+    {
+      "id": "pre_existing",
+      "clauses": [
+        "18.2"
+      ],
+      "expr": {
+        "var": "pre_existing_related"
+      },
+      "note_he": "היקף ומשך החריג נקבעים בסעיף 4 ובמפרט – לבדיקה",
+      "label_he": "מצב רפואי קודם"
+    }
+  ],
+  "claims": {
+    "limitation_years": 3,
+    "clauses": [
+      "תנאים כלליים"
+    ],
+    "notify_he": "להודיע בכתב בהקדם",
+    "general_docs_he": [
+      "כתב ויתור סודיות רפואית",
+      "מסמכים רפואיים"
+    ]
+  }
+}

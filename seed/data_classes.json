@@ -1,0 +1,84 @@
+{
+  "_doc": "Single source of truth for WHAT each piece of data is and WHERE it may live. Code never hard-codes these decisions: storage adapters, the scrubber, LLM payload builders, telemetry and export all read this file. Switching privacy profile = config change + an adapter, not a rewrite. See DESIGN.md §3.8.",
+  "version": 1,
+  "classes": {
+    "public":        {"label_he": "ציבורי",               "desc": "Policy wordings, rules, vocab, catalog. Same for everyone."},
+    "agent_account": {"label_he": "חשבון סוכן",          "desc": "Agent display name, agency, invite. About our user, not about a client."},
+    "counts":        {"label_he": "ספירות",               "desc": "Aggregates without values: number of findings by status, tokens used."},
+    "case_private":  {"label_he": "נתוני תיק לא מזהים",   "desc": "Which policies and editions a client holds, dates, covers bought, sums from the schedule, results. Not identifying on its own."},
+    "case_health":   {"label_he": "נתוני אירוע (רפואי)",  "desc": "What happened: event text, facts (injury, hospital days, disability). Health information about an unnamed person."},
+    "identity":      {"label_he": "פרטים מזהים",          "desc": "Name, ID number, phone, address, birth date, policy number. Not collected in the default profile."}
+  },
+  "profiles": {
+    "device_only": {
+      "status": "active",
+      "label_he": "הכול במחשב של הסוכן",
+      "store": "IndexedDbStore",
+      "server_may_store": ["public", "agent_account", "counts"],
+      "device_may_store": ["case_private", "case_health"],
+      "llm_may_receive": ["public", "case_health"],
+      "identity_fields_enabled": false,
+      "requires": []
+    },
+    "encrypted_sync": {
+      "status": "reserved",
+      "label_he": "גיבוי מוצפן בשרת (אנחנו לא יכולים לקרוא)",
+      "store": "EncryptedSyncStore",
+      "server_may_store": ["public", "agent_account", "counts", "ciphertext_only"],
+      "device_may_store": ["case_private", "case_health", "identity"],
+      "llm_may_receive": ["public", "case_health"],
+      "identity_fields_enabled": "per_agency_setting",
+      "requires": ["agency passphrase / key never leaves the agency's devices", "key-recovery procedure the agency accepts"]
+    },
+    "server_managed": {
+      "status": "reserved",
+      "label_he": "שמירה מלאה בשרת באישור",
+      "store": "ServerStore",
+      "server_may_store": ["public", "agent_account", "counts", "case_private", "case_health", "identity"],
+      "device_may_store": [],
+      "llm_may_receive": ["public", "case_health"],
+      "identity_fields_enabled": "per_agency_setting",
+      "requires": ["recorded approval (agencies.privacy.approved_by/at/terms_version)", "consent record per agency", "access audit log", "encryption at rest", "per-class retention"]
+    }
+  },
+  "fields": {
+    "portfolio.id": "case_private",
+    "portfolio.label": "case_private",
+    "portfolio.client_name": "identity",
+    "portfolio.client_id_number": "identity",
+    "portfolio.client_phone": "identity",
+    "portfolio.client_birth_date": "identity",
+    "holding.product_id": "case_private",
+    "holding.edition_id": "case_private",
+    "holding.edition_basis": "case_private",
+    "holding.edition_date_used": "case_private",
+    "holding.plan_id": "case_private",
+    "holding.start_date": "case_private",
+    "holding.last_renewal_date": "case_private",
+    "holding.doc_code": "case_private",
+    "holding.insured_is_child": "case_private",
+    "holding.insured_age_at_start": "case_private",
+    "holding.covers_bought": "case_private",
+    "holding.slots": "case_private",
+    "holding.policy_number": "identity",
+    "session.facts": "case_health",
+    "session.event_text": "case_health",
+    "session.messages": "case_health",
+    "session.unmapped_he": "case_health",
+    "run.findings": "case_health",
+    "run.total": "case_private",
+    "telemetry.*": "counts",
+    "usage.*": "counts",
+    "feedback.comment_he": "case_health",
+    "feedback.case": "case_health",
+    "agent.display_name": "agent_account",
+    "agency.name": "agent_account"
+  },
+  "rules": [
+    "A field whose class is not allowed in the active profile is rejected at the store boundary (validation error), not silently dropped.",
+    "identity is never sent to the LLM in any profile, and never appears in telemetry, usage, feedback or logs.",
+    "Free text always goes through the scrubber before it leaves the device, in every profile. Enabling identity fields allows them only in their own fields, never inside free text sent to the LLM.",
+    "feedback.case is case_health and is sent only after the agent sees a preview; event_date is reduced to month/year.",
+    "Every private record carries schema_version and data_profile, so a later migration can move it between stores."
+  ]
+}
